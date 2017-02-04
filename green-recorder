@@ -1,0 +1,145 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+# M.Hanny Sabbagh <mhsabbagh@outlook.com>, 2017.
+# Green Recorder is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+
+# Green Recorder is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License
+# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+import gi
+
+gi.require_version('Gtk','3.0')
+gi.require_version('AppIndicator3', '0.1')
+
+from gi.repository import Gtk, AppIndicator3 as appindicator
+import commands, subprocess, urllib, signal
+
+# Get the current name of the Videos folder
+VideosFolder = commands.getoutput("cat $HOME/.config/user-dirs.dirs|grep XDG_VIDEOS_DIR|awk -F'/' '{print $2}'")[:-1]
+RecorderDisplay = commands.getoutput("xdpyinfo | grep 'dimensions:'|awk '{print $2}'")
+
+def recorderindicator():
+    # Create the app indicator widget.
+    indicator = appindicator.Indicator.new("Green Recorder", 'logo.svg', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+    indicator.set_menu(indicator_menu())
+    # Make middle-click stops the recording process.
+    indicator.set_secondary_activate_target(stoprecordingbutton)
+    Gtk.main()
+    Gtk.main_quit()
+    
+def indicator_menu():
+    # Here menu items are defined and built. Used global on stoprecordingbutton to pass it as a Gtk.Widget to the indicator to be able to stop recording using middle click on the icon directly.
+    menu = Gtk.Menu()
+    global stoprecordingbutton
+    stoprecordingbutton = Gtk.MenuItem('Stop Record')
+    stoprecordingbutton.connect('activate', stoprecording)
+    menu.append(stoprecordingbutton)
+    menu.show_all()
+    return menu
+    
+def record():
+    # Hide the main window.
+    window.hide() #haha.
+    
+    # Get the given values from the input fields.
+    RecorderQuality = str(qualityvalue.get_value_as_int())
+    RecorderFrames = str(framesvalue.get_value_as_int())
+    RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
+    
+    # TODO: Check if -q still does a thing at all?
+    if videocheck.get_active() == True and microphonecheck.get_active() == False:
+        subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", ":0.0", "-q", RecorderQuality, RecorderFullPathName, "-y"])
+    elif videocheck.get_active() == False and microphonecheck.get_active() == True:
+        subprocess.Popen(["ffmpeg", "-f", "alsa", "-i", "hw:0", "-ac", RecorderQuality, RecorderFullPathName, "-y"])
+    else:
+        subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", ":0.0", "-f", "alsa", "-ac", RecorderQuality, "-i", "default", "-q", RecorderQuality, RecorderFullPathName, "-y"])
+    
+    
+def stoprecording(self):
+    subprocess.call(["sleep", "2"])
+    subprocess.Popen(["killall", "ffmpeg"])
+    recordbutton.set_sensitive(True)
+    window.show()
+
+# Import the glade file and its widgets.
+builder = Gtk.Builder()
+builder.add_from_file("ui.glade")
+
+# TODO: Name the objects directly in the glade file and then use builder_get_objects() to import the objects with their names in just a single line.
+window = builder.get_object("window1")
+aboutdialog = builder.get_object("aboutdialog")
+folderchooser = builder.get_object("filechooserbutton1")
+filenameentry = builder.get_object("entry1")
+formatchooser = builder.get_object("comboboxtext1")
+recordbutton = builder.get_object("button1")
+videocheck = builder.get_object("checkbutton1")
+microphonecheck = builder.get_object("checkbutton2")
+frametext = builder.get_object("label2")
+threadstext = builder.get_object("label3")
+framesvalue = builder.get_object("spinbutton1")
+qualityvalue = builder.get_object("spinbutton2")
+expander = builder.get_object("expandertext")
+
+# Assign the texts to the interface
+# TODO: support internationalization using gettext.
+window.set_title("Green Recorder")
+window.connect("delete-event", Gtk.main_quit,)
+folderchooser.set_uri("file://" + commands.getoutput("echo $HOME") + "/" + VideosFolder)
+filenameentry.set_placeholder_text("Name of the file here..")
+# TODO: There's a huge list of formats that are supported by ffmpeg. However, each one has its own needed parameters and settings. More formats should be inserted here with telling the user that some features (like video or audio) may not be recorded using that format (like flac, doesn't record video).
+formatchooser.append("mp4", "MP4 (MPEG-4 Part 14)")
+formatchooser.append("avi", "AVI (Audio Video Interleaved)")
+formatchooser.append("flv", "FLV (Flash Video)")
+formatchooser.append("wmv", "WMV (Windows Media Video)")
+formatchooser.append("nut", "NUT (Recording Format)")
+formatchooser.set_active(0)
+videocheck.set_label("Record Video")
+microphonecheck.set_label("Record Microphone")
+aboutdialog.set_program_name("Green Recorder")
+aboutdialog.set_version("1.0.0")
+aboutdialog.set_copyright("© 2017 Green Project")
+aboutdialog.set_wrap_license(True)
+aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Foobar. If not, see <http://www.gnu.org/licenses/>.")
+aboutdialog.set_comments("An easy to use yet strong desktop recorder.")
+aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>'])
+aboutdialog.set_artists(['Mustapha Assabar'])
+aboutdialog.set_website("https://github.com/green-project/green-recorder")
+aboutdialog.set_logo_icon_name("green-recorder")
+expander.set_label("Advanced:")
+frametext.set_label("Frames:")
+threadstext.set_label("Quality (1 is best):")
+# Make default checkboxes True.
+videocheck.set_active(True)
+microphonecheck.set_active(True)
+
+
+
+# The actions which should happen upon every signal.
+class Handler:
+# TODO: Create a checking method which check if the ffmpeg process started or not before locking the buttons or releasing them. This can be done easily if switched to subprocess module.
+    def about(self, GtkButton):
+        aboutdialog.run()
+        aboutdialog.hide()
+
+    def recordclicked(self, GtkButton):
+        recordbutton.set_sensitive(False)
+        record()
+        recorderindicator()
+
+# Connect the handler to the glade file's objects.
+builder.connect_signals(Handler())
+
+# The End of all things.
+if __name__ == "__main__": 
+    signal.signal(signal.SIGINT, signal.SIG_DFL)
+    window.show_all()
+    Gtk.main()
