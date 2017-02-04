@@ -28,7 +28,7 @@ RecorderDisplay = commands.getoutput("xdpyinfo | grep 'dimensions:'|awk '{print 
 
 def recorderindicator():
     # Create the app indicator widget.
-    indicator = appindicator.Indicator.new("Green Recorder", 'logo.svg', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.svg', appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(indicator_menu())
     # Make middle-click stops the recording process.

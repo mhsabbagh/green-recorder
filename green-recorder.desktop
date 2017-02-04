@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Green Recorder
+GenericName=Green Recorder
 Comment=Record your desktop easily using a simple GUI.
 Exec=green-recorder
 Terminal=false
@@ -7,4 +8,3 @@ Type=Application
 Icon=green-recorder
 Categories=GTK;Utility;AudioVideo;
 StartupNotify=false
-Name[en_US]=green-recorder.desktop
