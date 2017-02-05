@@ -12,7 +12,7 @@ The following formats are currently available: **avi**, **mp4**, **flv**, **wmv*
 
 ### Ubuntu 16.04/16.10
 
-You can install Green Recorder from the following PPA:
+Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
     sudo add-apt-repository ppa:mhsabbagh/greenproject
     sudo apt install green-recorder
