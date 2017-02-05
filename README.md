@@ -10,6 +10,28 @@ The following formats are currently available: **avi**, **mp4**, **flv**, **wmv*
 
 ## Download
 
-You can grab the source code from: https://github.com/green-project/green-recorder
+### Ubuntu 16.04/16.10
+
+You can install Green Recorder from the following PPA:
+
+    sudo add-apt-repository ppa:mhsabbagh/greenproject
+    sudo apt install green-recorder
+
+### Fedora 25
+
+The program requires ffmpeg, which isn't available in Fedora's official repositories. You need to activate the rpmfusion repository and install the **ffmpeg** package first: https://rpmfusion.org/
+
+Green Recorder is available to install from a Fedora Copr repository for Fedora 25:
+
+     sudo dnf copr enable mhsabbagh/greenproject 
+     sudo dnf install green-recorder
+
+### Other Distributions
+
+The source code is available to download via: https://github.com/green-project/green-recorder/archive/master.zip. You can simply download it and install the dependencies on your distribution (gir1.2-appindicator3, gawk, python-gobject, python-urllib3, x11-utils, ffmpeg). And then run: 
+
+    sudo python setup.py install
+    
+## Contact
 
 The program is released under GPL 3. For contact: mhsabbagh[at]outlook.com.
