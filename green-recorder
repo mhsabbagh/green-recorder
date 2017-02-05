@@ -72,7 +72,7 @@ def stoprecording(self):
 
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("ui.glade")
+builder.add_from_file("/usr/lib/green-recorder/ui.glade")
 
 # TODO: Name the objects directly in the glade file and then use builder_get_objects() to import the objects with their names in just a single line.
 window = builder.get_object("window1")
@@ -131,6 +131,7 @@ class Handler:
         aboutdialog.hide()
 
     def recordclicked(self, GtkButton):
+        
         recordbutton.set_sensitive(False)
         record()
         recorderindicator()

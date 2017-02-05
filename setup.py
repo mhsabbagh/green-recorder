@@ -1,10 +1,10 @@
-
+#!/usr/bin/python
 from distutils.core import setup
 
 from subprocess import call
 
-data_files = [ ("lib/green-recorder", ["ui.glade"]),
-                    ("share/pixmaps", ["green-recorder.svg"]),
+data_files = [ ("lib/green-recorder", ["ui/ui.glade"]),
+                    ("share/pixmaps", ["data/green-recorder.svg"]),
                      ("share/applications", ["green-recorder.desktop"]) ] 
 
 setup(name = "green-recorder",
