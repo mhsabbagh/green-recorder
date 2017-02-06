@@ -31,6 +31,15 @@ The source code is available to download via: https://github.com/green-project/g
 
     sudo python setup.py install
     
+## TODO:
+
+There's a big list of things to do right now. I might work on it if a lot of people need this program and its functionality:
+
+* Add support for recording on Wayland (GNOME Shell Wayland Session, it offers a screencast tool, can be used).
+* Add a checking method to see if ffmpeg already working properly or not before launching the tray.
+* Add more possible formats supported by ffmpeg.
+* Support more options like including the mouse pointer, recording a specific area and choosing input audio stream.
+    
 ## Contact
 
 The program is released under GPL 3. For contact: mhsabbagh[at]outlook.com.
