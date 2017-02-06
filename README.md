@@ -20,8 +20,6 @@ Make sure you have enabled the multiverse and universe repositories before tryin
 
 ### Fedora 24/25
 
-The program requires ffmpeg, which isn't available in Fedora's official repositories. You need to activate the rpmfusion repository and install the **ffmpeg** package first: https://rpmfusion.org/
-
 Green Recorder is available to install from a Fedora Copr repository for Fedora 25:
 
      sudo dnf copr enable mhsabbagh/greenproject 
