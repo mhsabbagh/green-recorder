@@ -8,6 +8,10 @@ A simple yet functional desktop recorder for Linux systems. Built using Python, 
 
 The following formats are currently available: **avi**, **mp4**, **flv**, **wmv** and **nut**. You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
+This is a recording sample using this program: https://www.youtube.com/watch?v=RxXetUgtvrw
+
+**REMEMBER:** This is the first public version. It's in its very early stages. Please be patience.
+
 ## Download
 
 ### Ubuntu 16.04/16.10/17.04
