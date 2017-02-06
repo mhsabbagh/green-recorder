@@ -6,18 +6,19 @@
 
 A simple yet functional desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. Currently it supports recording audio and video on almost all Linux interfaces. However, **Wayland support (GNOME session) is expected to be added soon**.
 
-The following formats are currently available: **avi**, **mp4**, **flv**, **wmv** and **nut**. You can stop the recording process easily by middle-clicking the recording icon in the notifications area.
+The following formats are currently available: **avi**, **mp4**, **flv**, **wmv** and **nut**. You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
 ## Download
 
-### Ubuntu 16.04/16.10
+### Ubuntu 16.04/16.10/17.04
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
     sudo add-apt-repository ppa:mhsabbagh/greenproject
+    sudo apt update
     sudo apt install green-recorder
 
-### Fedora 25
+### Fedora 24/25
 
 The program requires ffmpeg, which isn't available in Fedora's official repositories. You need to activate the rpmfusion repository and install the **ffmpeg** package first: https://rpmfusion.org/
 
