@@ -8,7 +8,7 @@ A simple yet functional desktop recorder for Linux systems. Built using Python, 
 
 The following formats are currently available: **avi**, **mp4**, **flv**, **wmv** and **nut**. You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
-This is a recording sample using this program: https://www.youtube.com/watch?v=RxXetUgtvrw
+This is a recording sample using this program: [https://www.youtube.com/watch?v=RxXetUgtvrw](https://www.youtube.com/watch?v=RxXetUgtvrw)
 
 **REMEMBER:** This is the first public version. It's in its very early stages. Please be patience.
 
@@ -31,7 +31,7 @@ Green Recorder is available to install from a Fedora Copr repository for Fedora 
 
 ### Other Distributions
 
-The source code is available to download via: https://github.com/green-project/green-recorder/archive/master.zip. You can simply download it and install the dependencies on your distribution (gir1.2-appindicator3, gawk, python-gobject, python-urllib3, x11-utils, ffmpeg). And then run: 
+The source code is available to download via: [https://github.com/green-project/green-recorder/archive/master.zip](https://github.com/green-project/green-recorder/archive/master.zip). You can simply download it and install the dependencies on your distribution (gir1.2-appindicator3, gawk, python-gobject, python-urllib3, x11-utils, ffmpeg). And then run: 
 
     sudo python setup.py install
     
