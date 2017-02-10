@@ -4,11 +4,11 @@ from distutils.core import setup
 from subprocess import call
 
 data_files = [ ("lib/green-recorder", ["ui/ui.glade"]),
-                    ("share/pixmaps", ["data/green-recorder.svg"]),
-                     ("share/applications", ["green-recorder.desktop"]) ] 
+                    ("share/pixmaps", ["data/green-recorder.png"]),
+                     ("share/applications", ["data/green-recorder.desktop"]) ] 
 
 setup(name = "green-recorder",
-      version = "1.0.0",
+      version = "1.1",
       description = "Record your desktop easily using a simple GUI",
       author = "M.Hanny Sabbagh", 
       author_email = "mhsabbagh@outlook.com",

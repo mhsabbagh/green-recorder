@@ -23,12 +23,13 @@ from gi.repository import Gtk, AppIndicator3 as appindicator
 import commands, subprocess, urllib, signal
 
 # Get the current name of the Videos folder
-VideosFolder = commands.getoutput("cat $HOME/.config/user-dirs.dirs|grep XDG_VIDEOS_DIR|awk -F'/' '{print $2}'")[:-1]
+VideosFolder = commands.getoutput("awk -F'/' '/XDG_VIDEOS_DIR/{print $2}' \"$HOME/.config/user-dirs.dirs\"")[:-1]
 RecorderDisplay = commands.getoutput("xdpyinfo | grep 'dimensions:'|awk '{print $2}'")
+DISPLAY = commands.getoutput("echo $DISPLAY")
 
 def recorderindicator():
     # Create the app indicator widget.
-    indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.svg', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(indicator_menu())
     # Make middle-click stops the recording process.
@@ -51,22 +52,25 @@ def record():
     window.hide() #haha.
     
     # Get the given values from the input fields.
-    RecorderQuality = str(qualityvalue.get_value_as_int())
+    RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
     RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
+    RecorderAudioServer = audioserver.get_active_id()
     
-    # TODO: Check if -q still does a thing at all?
+    # Call the recording command using ffmpeg. Wait before that.
+    subprocess.call(["sleep", RecorderDelay])
+    global RecorderProcess
     if videocheck.get_active() == True and microphonecheck.get_active() == False:
-        subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", ":0.0", "-q", RecorderQuality, RecorderFullPathName, "-y"])
+        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, RecorderFullPathName, "-y"])
     elif videocheck.get_active() == False and microphonecheck.get_active() == True:
-        subprocess.Popen(["ffmpeg", "-f", "alsa", "-i", "hw:0", "-ac", RecorderQuality, RecorderFullPathName, "-y"])
+        RecorderProcess = subprocess.Popen(["ffmpeg", "-f", RecorderAudioServer, "-i", "default", "-ac", "1", RecorderFullPathName, "-y"])
     else:
-        subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", ":0.0", "-f", "alsa", "-ac", RecorderQuality, "-i", "default", "-q", RecorderQuality, RecorderFullPathName, "-y"])
+        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, "-f", RecorderAudioServer, "-ac", "1", "-i", "default", "-q", "1", RecorderFullPathName, "-y"])
     
     
 def stoprecording(self):
     subprocess.call(["sleep", "2"])
-    subprocess.Popen(["killall", "ffmpeg"])
+    RecorderProcess.terminate()
     recordbutton.set_sensitive(True)
     window.show()
 
@@ -80,13 +84,15 @@ aboutdialog = builder.get_object("aboutdialog")
 folderchooser = builder.get_object("filechooserbutton1")
 filenameentry = builder.get_object("entry1")
 formatchooser = builder.get_object("comboboxtext1")
+audioserver = builder.get_object("comboboxtext2")
 recordbutton = builder.get_object("button1")
 videocheck = builder.get_object("checkbutton1")
 microphonecheck = builder.get_object("checkbutton2")
 frametext = builder.get_object("label2")
-threadstext = builder.get_object("label3")
+delaytext = builder.get_object("label3")
+audioservertext = builder.get_object("label4")
 framesvalue = builder.get_object("spinbutton1")
-qualityvalue = builder.get_object("spinbutton2")
+delayvalue = builder.get_object("spinbutton2")
 expander = builder.get_object("expandertext")
 
 # Assign the texts to the interface
@@ -94,21 +100,21 @@ expander = builder.get_object("expandertext")
 window.set_title("Green Recorder")
 window.connect("delete-event", Gtk.main_quit,)
 folderchooser.set_uri("file://" + commands.getoutput("echo $HOME") + "/" + VideosFolder)
-filenameentry.set_placeholder_text("Name of the file here..")
+filenameentry.set_placeholder_text("File Name (Will be overwritten)..")
 # TODO: There's a huge list of formats that are supported by ffmpeg. However, each one has its own needed parameters and settings. More formats should be inserted here with telling the user that some features (like video or audio) may not be recorded using that format (like flac, doesn't record video).
-formatchooser.append("mp4", "MP4 (MPEG-4 Part 14)")
+formatchooser.append("mkv", "MKV (Matroska multimedia container format)")
 formatchooser.append("avi", "AVI (Audio Video Interleaved)")
-formatchooser.append("flv", "FLV (Flash Video)")
+formatchooser.append("mp4", "MP4 (MPEG-4 Part 14)")
 formatchooser.append("wmv", "WMV (Windows Media Video)")
-formatchooser.append("nut", "NUT (Recording Format)")
+formatchooser.append("nut", "NUT (NUT Recording Format)")
 formatchooser.set_active(0)
 videocheck.set_label("Record Video")
 microphonecheck.set_label("Record Microphone")
 aboutdialog.set_program_name("Green Recorder")
-aboutdialog.set_version("1.0.0")
+aboutdialog.set_version("1.1")
 aboutdialog.set_copyright("© 2017 Green Project")
 aboutdialog.set_wrap_license(True)
-aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Foobar. If not, see <http://www.gnu.org/licenses/>.")
+aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
 aboutdialog.set_comments("An easy to use yet strong desktop recorder.")
 aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>'])
 aboutdialog.set_artists(['Mustapha Assabar'])
@@ -116,10 +122,27 @@ aboutdialog.set_website("https://github.com/green-project/green-recorder")
 aboutdialog.set_logo_icon_name("green-recorder")
 expander.set_label("Advanced:")
 frametext.set_label("Frames:")
-threadstext.set_label("Quality (1 is best):")
+delaytext.set_label("Delay:")
+audioservertext.set_label("Audio Input:")
 # Make default checkboxes True.
 videocheck.set_active(True)
 microphonecheck.set_active(True)
+# Check for the available audio server.
+try:
+   pulsecommand = subprocess.check_output("pulseaudio", shell=True)
+except subprocess.CalledProcessError as output:
+    if output.returncode == 127:
+        print "No pulseaudio found", output.returncode
+    else:
+        audioserver.append("pulse", "PulseAudio")
+try:
+   alsacommand = subprocess.check_output("aserver", shell=True)
+except subprocess.CalledProcessError as output2:
+    if output2.returncode == 127:
+        print "No alsa found", output2.returncode
+    else:
+        audioserver.append("alsa", "Alsa Module")
+audioserver.set_active(0)
 
 
 
