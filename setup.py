@@ -8,7 +8,7 @@ data_files = [ ("lib/green-recorder", ["ui/ui.glade"]),
                      ("share/applications", ["data/green-recorder.desktop"]) ] 
 
 setup(name = "green-recorder",
-      version = "1.1",
+      version = "1.1.1",
       description = "Record your desktop easily using a simple GUI",
       author = "M.Hanny Sabbagh", 
       author_email = "mhsabbagh@outlook.com",
