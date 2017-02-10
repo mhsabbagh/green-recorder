@@ -1,12 +1,12 @@
 # Green Recorder
 
-![alt text](https://raw.githubusercontent.com/green-project/green-recorder/master/Green%20Recorder.png)
+![Green Recorder](http://i.imgur.com/7F8QDje.png)
 
 ## About
 
 A simple yet functional desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. Currently it supports recording audio and video on almost all Linux interfaces. However, **Wayland support (GNOME session) is expected to be added soon**.
 
-The following formats are currently available: **avi**, **mp4**, **flv**, **wmv** and **nut**. You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
+The following formats are currently available: **mkv**, **avi**, **mp4**, **wmv** and **nut**. You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
 This is a recording sample using this program: [https://www.youtube.com/watch?v=RxXetUgtvrw](https://www.youtube.com/watch?v=RxXetUgtvrw)
 
