@@ -61,7 +61,7 @@ def record():
     subprocess.call(["sleep", RecorderDelay])
     global RecorderProcess
     if videocheck.get_active() == True and microphonecheck.get_active() == False:
-        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, RecorderFullPathName, "-y"])
+        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, "q", "1", RecorderFullPathName, "-y"])
     elif videocheck.get_active() == False and microphonecheck.get_active() == True:
         RecorderProcess = subprocess.Popen(["ffmpeg", "-f", RecorderAudioServer, "-i", "default", "-ac", "1", RecorderFullPathName, "-y"])
     else:
