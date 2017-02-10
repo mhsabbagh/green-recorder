@@ -1,3 +1,9 @@
+green-recorder (1.1.1) zesty; urgency=low 
+
+  * Fixed a small bug in recording video only.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Fri, 10 Feb 2017 21:33:33 +0200
+
 green-recorder (1.1) zesty; urgency=low 
 
   * Removed FLV, added MKV and made it the default format.
@@ -16,4 +22,3 @@ green-recorder (1.0.2.1) zesty; urgency=low
   * First Version
 
  -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 5 Feb 2017 20:36:33 +0200
-
