@@ -29,6 +29,14 @@ Green Recorder is available to install from a Fedora Copr repository for Fedora 
      sudo dnf copr enable mhsabbagh/greenproject 
      sudo dnf install green-recorder
 
+### ArchLinux
+
+You can install Green recorder using your [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers):
+
+```
+yaourt -S green-recorder-git
+```
+
 ### Other Distributions
 
 The source code is available to download via: [https://github.com/green-project/green-recorder/archive/master.zip](https://github.com/green-project/green-recorder/archive/master.zip). You can simply download it and install the dependencies on your distribution (gir1.2-appindicator3, gawk, python-gobject, python-urllib3, x11-utils, ffmpeg). And then run: 
