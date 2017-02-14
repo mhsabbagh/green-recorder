@@ -1,10 +1,9 @@
 %global owner green-project
 
 Name: green-recorder
-Summary: Simply Desktop Recording
-Summary(ar): تسجيل سطح المكتب بيسر
+Summary: A simple yet functional desktop recorder for Linux systems. 
 URL: https://green-project.github.io
-Version: 1.2
+Version: 1.1
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -14,6 +13,8 @@ BuildRequires: python2-devel
 Requires: python2
 Requires: python2-pydbus
 Requires: ffmpeg
+Requires: gawk
+Requires: libappindicator-gtk3
 Requires: rpmfusion-free-release 
 
 %description -l ar
@@ -31,37 +32,16 @@ python setup.py build
 %install
 python setup.py install -O1 --root=$RPM_BUILD_ROOT
 
-
-
-
-# Register as an application to be visible in the software center
-#
-# NOTE: It would be *awesome* if this file was maintained by the upstream
-# project, translated and installed into the right place during `make install`.
-#
-# See http://www.freedesktop.org/software/appstream/docs/ for more details.
-#
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/appdata
 cat > $RPM_BUILD_ROOT%{_datadir}/appdata/%{name}.appdata.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Mosaab Alzoubi <moceap@hotmail.com> -->
-<!--
-EmailAddress: moceap@hotmail.com
-SentUpstream: 2017-2-14
--->
 <application>
   <id type="desktop">%{name}.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <summary>Simply Desktop Recording</summary>
-  <summary xml:lang="ar">تسجيل سطح المكتب بيسر</summary>
+  <summary>A simple desktop recorder. Built using ffmpeg, Python and GTK+ 3.</summary>
   <description>
     <p>
 	Simply Desktop Recording.
-    </p>
-  </description>
-  <description xml:lang="ar">
-    <p>
-	تسجيل سطح المكتب بيسر.
     </p>
   </description>
   <url type="homepage">https://green-project.github.io</url>
@@ -81,5 +61,4 @@ EOF
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
-* Tue Feb 14 2017 Mosaab Alzoubi <moceap@hotmail.com> - 1.2-1
-- Version 1.2
+- Version 1.1
