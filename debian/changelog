@@ -1,3 +1,11 @@
+green-recorder (1.1.2) zesty; urgency=low 
+
+  * Used a better syntax in some places.
+  * Removed the need for the commands module.
+  * Small fixes.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Fri, 14 Feb 2017 19:33:33 +0200
+ 
 green-recorder (1.1.1) zesty; urgency=low 
 
   * Fixed a small bug in recording video only.

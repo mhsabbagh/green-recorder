@@ -71,7 +71,6 @@ def record():
 def stoprecording(self):
     subprocess.call(["sleep", "2"])
     RecorderProcess.terminate()
-    recordbutton.set_sensitive(True)
     window.show()
 
 # Import the glade file and its widgets.
