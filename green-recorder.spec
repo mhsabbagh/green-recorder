@@ -62,6 +62,9 @@ EOF
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Tue Feb 14 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 1.1.2-1
+- new package built with tito
+
 * Tue Feb 14 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 1.1.2
 - Version 1.1.2. 
 
