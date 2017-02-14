@@ -22,14 +22,14 @@ Make sure you have enabled the multiverse and universe repositories before tryin
     sudo apt update
     sudo apt install green-recorder
 
-### Fedora 24/25
+### Fedora 24/25/26
 
 Green Recorder is available to install from a Fedora Copr repository for Fedora 25:
 
      sudo dnf copr enable mhsabbagh/greenproject 
      sudo dnf install green-recorder
 
-### ArchLinux
+### Arch Linux (3rd-party package)
 
 You can install Green recorder using your [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers):
 
