@@ -15,6 +15,7 @@ Requires: python2-pydbus
 Requires: ffmpeg
 Requires: gawk
 Requires: libappindicator-gtk3
+Requires: python2-urllib3
 Requires: rpmfusion-free-release 
 
 %description -l ar
