@@ -20,12 +20,12 @@ gi.require_version('Gtk','3.0')
 gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk, AppIndicator3 as appindicator
-import commands, subprocess, urllib, signal
+import subprocess, urllib, signal
 
 # Get the current name of the Videos folder
-VideosFolder = commands.getoutput("awk -F'/' '/XDG_VIDEOS_DIR/{print $2}' \"$HOME/.config/user-dirs.dirs\"")[:-1]
-RecorderDisplay = commands.getoutput("xdpyinfo | grep 'dimensions:'|awk '{print $2}'")
-DISPLAY = commands.getoutput("echo $DISPLAY")
+VideosFolder = subprocess.check_output("awk -F'/' '/XDG_VIDEOS_DIR/{print $2}' \"$HOME/.config/user-dirs.dirs\"", shell=True)[:-2]
+RecorderDisplay = subprocess.check_output("xdpyinfo | grep 'dimensions:'|awk '{print $2}'", shell=True)[:-1]
+DISPLAY = subprocess.check_output("echo $DISPLAY", shell=True)[:-1]
 
 def recorderindicator():
     # Create the app indicator widget.
@@ -99,9 +99,8 @@ expander = builder.get_object("expandertext")
 # TODO: support internationalization using gettext.
 window.set_title("Green Recorder")
 window.connect("delete-event", Gtk.main_quit,)
-folderchooser.set_uri("file://" + commands.getoutput("echo $HOME") + "/" + VideosFolder)
+folderchooser.set_uri("file://" + subprocess.check_output("echo $HOME", shell=True)[:-1] + "/" + VideosFolder)
 filenameentry.set_placeholder_text("File Name (Will be overwritten)..")
-# TODO: There's a huge list of formats that are supported by ffmpeg. However, each one has its own needed parameters and settings. More formats should be inserted here with telling the user that some features (like video or audio) may not be recorded using that format (like flac, doesn't record video).
 formatchooser.append("mkv", "MKV (Matroska multimedia container format)")
 formatchooser.append("avi", "AVI (Audio Video Interleaved)")
 formatchooser.append("mp4", "MP4 (MPEG-4 Part 14)")
@@ -111,7 +110,7 @@ formatchooser.set_active(0)
 videocheck.set_label("Record Video")
 microphonecheck.set_label("Record Microphone")
 aboutdialog.set_program_name("Green Recorder")
-aboutdialog.set_version("1.1.1")
+aboutdialog.set_version("1.1.2")
 aboutdialog.set_copyright("© 2017 Green Project")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
@@ -152,8 +151,6 @@ class Handler:
         aboutdialog.hide()
 
     def recordclicked(self, GtkButton):
-        
-        recordbutton.set_sensitive(False)
         record()
         recorderindicator()
 
