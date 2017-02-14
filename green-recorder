@@ -61,7 +61,7 @@ def record():
     subprocess.call(["sleep", RecorderDelay])
     global RecorderProcess
     if videocheck.get_active() == True and microphonecheck.get_active() == False:
-        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, "q", "1", RecorderFullPathName, "-y"])
+        RecorderProcess = subprocess.Popen(["ffmpeg", "-video_size", RecorderDisplay, "-framerate", RecorderFrames, "-f", "x11grab", "-i", DISPLAY, "-q", "1", RecorderFullPathName, "-y"])
     elif videocheck.get_active() == False and microphonecheck.get_active() == True:
         RecorderProcess = subprocess.Popen(["ffmpeg", "-f", RecorderAudioServer, "-i", "default", "-ac", "1", RecorderFullPathName, "-y"])
     else:
@@ -116,7 +116,7 @@ aboutdialog.set_copyright("© 2017 Green Project")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
 aboutdialog.set_comments("An easy to use yet strong desktop recorder.")
-aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>'])
+aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>\nMousab Alzoubi'])
 aboutdialog.set_artists(['Mustapha Assabar'])
 aboutdialog.set_website("https://github.com/green-project/green-recorder")
 aboutdialog.set_logo_icon_name("green-recorder")
@@ -143,8 +143,6 @@ except subprocess.CalledProcessError as output2:
     else:
         audioserver.append("alsa", "Alsa Module")
 audioserver.set_active(0)
-
-
 
 # The actions which should happen upon every signal.
 class Handler:

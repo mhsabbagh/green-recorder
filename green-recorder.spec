@@ -42,7 +42,7 @@ cat > $RPM_BUILD_ROOT%{_datadir}/appdata/%{name}.appdata.xml <<EOF
   <summary>A simple desktop recorder. Built using ffmpeg, Python and GTK+ 3.</summary>
   <description>
     <p>
-	Simply Desktop Recording.
+	A simple yet functional desktop recorder for Linux systems.
     </p>
   </description>
   <url type="homepage">https://green-project.github.io</url>
