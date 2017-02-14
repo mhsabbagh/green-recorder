@@ -1,7 +1,10 @@
 [Desktop Entry]
+Name[ar]=المسجل الأخضر
+GenericName[ar]=المسجل الأخضر
+Comment[ar]=تسجيل سطح المكتب بسهولة ويسر
 Name=Green Recorder
 GenericName=Green Recorder
-Comment=Record your desktop easily using a simple GUI.
+Comment=Record your desktop easily using a simple GUI
 Exec=green-recorder
 Terminal=false
 Type=Application
