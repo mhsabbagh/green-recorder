@@ -94,8 +94,6 @@ audioservertext = builder.get_object("label4")
 framesvalue = builder.get_object("spinbutton1")
 delayvalue = builder.get_object("spinbutton2")
 expander = builder.get_object("expandertext")
-global_expander = builder.get_object("expander")
-global_expander.set_resize_toplevel(True)
 
 # Assign the texts to the interface
 # TODO: support internationalization using gettext.
