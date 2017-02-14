@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. 
 URL: https://green-project.github.io
-Version: 1.1
+Version: 1.1.1
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -61,4 +61,4 @@ EOF
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
-- Version 1.1
+- Version 1.1.1
