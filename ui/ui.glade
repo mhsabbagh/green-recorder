@@ -138,7 +138,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkExpander" id="expander">
+          <object class="GtkExpander">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
