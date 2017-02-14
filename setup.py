@@ -3,7 +3,7 @@ from distutils.core import setup
 
 from subprocess import call
 
-data_files = [ ("lib/green-recorder", ["ui/ui.glade"]),
+data_files = [ ("share/green-recorder", ["ui/ui.glade"]),
                     ("share/pixmaps", ["data/green-recorder.png"]),
                      ("share/applications", ["data/green-recorder.desktop"]) ] 
 
