@@ -55,6 +55,7 @@ def record():
     RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
     RecorderFullPathName = (folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
+    RecorderFullPathName=RecorderFullPathName.replace('%20', " ")
     RecorderAudioServer = audioserver.get_active_id()
     
     # Call the recording command using ffmpeg. Wait before that.
