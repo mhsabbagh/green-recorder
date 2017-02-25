@@ -10,7 +10,7 @@ The following formats are currently available: **mkv**, **avi**, **mp4**, **wmv*
 
 This is a recording sample using this program: [https://www.youtube.com/watch?v=RxXetUgtvrw](https://www.youtube.com/watch?v=RxXetUgtvrw)
 
-**REMEMBER:** This is the first public version. It's in its very early stages. Please be patience.
+**REMEMBER:** This is the first public version. It's in its very early stages. Please be patient.
 
 ## Download
 
