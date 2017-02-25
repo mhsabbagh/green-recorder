@@ -19,11 +19,11 @@ import gi
 gi.require_version('Gtk','3.0')
 gi.require_version('AppIndicator3', '0.1')
 
-from gi.repository import Gtk, AppIndicator3 as appindicator
+from gi.repository import Gtk,GLib, AppIndicator3 as appindicator
 import subprocess, urllib, signal
 
 # Get the current name of the Videos folder
-VideosFolder = subprocess.check_output("awk -F'/' '/XDG_VIDEOS_DIR/{print $2}' \"$HOME/.config/user-dirs.dirs\"", shell=True)[:-2]
+VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)
 RecorderDisplay = subprocess.check_output("xdpyinfo | grep 'dimensions:'|awk '{print $2}'", shell=True)[:-1]
 DISPLAY = subprocess.check_output("echo $DISPLAY", shell=True)[:-1]
 
@@ -98,7 +98,7 @@ expander = builder.get_object("expandertext")
 # TODO: support internationalization using gettext.
 window.set_title("Green Recorder")
 window.connect("delete-event", Gtk.main_quit,)
-folderchooser.set_uri("file://" + subprocess.check_output("echo $HOME", shell=True)[:-1] + "/" + VideosFolder)
+folderchooser.set_uri("file://" + VideosFolder)
 filenameentry.set_placeholder_text("File Name (Will be overwritten)..")
 formatchooser.append("mkv", "MKV (Matroska multimedia container format)")
 formatchooser.append("avi", "AVI (Audio Video Interleaved)")
