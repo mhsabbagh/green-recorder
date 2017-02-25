@@ -20,7 +20,7 @@ gi.require_version('Gtk','3.0')
 gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk,GLib, AppIndicator3 as appindicator
-import subprocess, urllib, signal
+import subprocess,signal
 
 # Get the current name of the Videos folder
 VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)
@@ -54,7 +54,7 @@ def record():
     # Get the given values from the input fields.
     RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
-    RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
+    RecorderFullPathName = (folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
     RecorderAudioServer = audioserver.get_active_id()
     
     # Call the recording command using ffmpeg. Wait before that.
@@ -131,14 +131,14 @@ try:
    pulsecommand = subprocess.check_output("pulseaudio", shell=True)
 except subprocess.CalledProcessError as output:
     if output.returncode == 127:
-        print "No pulseaudio found", output.returncode
+        print("No pulseaudio found", output.returncode)
     else:
         audioserver.append("pulse", "PulseAudio")
 try:
    alsacommand = subprocess.check_output("aserver", shell=True)
 except subprocess.CalledProcessError as output2:
     if output2.returncode == 127:
-        print "No alsa found", output2.returncode
+        print("No alsa found", output2.returncode)
     else:
         audioserver.append("alsa", "Alsa Module")
 audioserver.set_active(0)
