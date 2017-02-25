@@ -29,8 +29,11 @@ DISPLAY = subprocess.check_output("echo $DISPLAY", shell=True)[:-1]
 
 def recorderindicator():
     # Create the app indicator widget.
+    global indicator
     indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
-    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+    is_alive =RecorderProcess.poll()
+    if is_alive == None:
+       indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(indicator_menu())
     # Make middle-click stops the recording process.
     indicator.set_secondary_activate_target(stoprecordingbutton)
@@ -56,6 +59,7 @@ def record():
     RecorderFrames = str(framesvalue.get_value_as_int())
     RecorderFullPathName = (folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
     RecorderFullPathName=RecorderFullPathName.replace('%20', " ")
+    print (RecorderFullPathName)
     RecorderAudioServer = audioserver.get_active_id()
     
     # Call the recording command using ffmpeg. Wait before that.
@@ -73,6 +77,7 @@ def stoprecording(self):
     subprocess.call(["sleep", "2"])
     RecorderProcess.terminate()
     window.show()
+    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
 
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
