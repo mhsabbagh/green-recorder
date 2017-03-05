@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://green-project.github.io
-Version: 2.0
+Version: 2.1
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -40,6 +40,14 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sun Mar 05 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.1-1
+- Fix Spec file (mhsabbagh@outlook.com)
+- Version 2.0 (mhsabbagh@outlook.com)
+
+* Sun Mar 05 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com>
+- Fix Spec file (mhsabbagh@outlook.com)
+- Version 2.0 (mhsabbagh@outlook.com)
+
 * Sun Mar 05 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.0-1
 - Added Wayland Support (GNOME Session).
 - Added ability to select a specific window.
