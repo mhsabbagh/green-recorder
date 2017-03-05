@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from distutils.core import setup
-
 from subprocess import call
 
 data_files = [ ("share/green-recorder", ["ui/ui.glade"]),
@@ -8,7 +7,7 @@ data_files = [ ("share/green-recorder", ["ui/ui.glade"]),
                      ("share/applications", ["data/green-recorder.desktop"]) ] 
 
 setup(name = "green-recorder",
-      version = "1.1.2",
+      version = "2.0",
       description = "Record your desktop easily using a simple GUI",
       author = "M.Hanny Sabbagh", 
       author_email = "mhsabbagh@outlook.com",
