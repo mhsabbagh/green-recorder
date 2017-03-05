@@ -1,3 +1,17 @@
+green-recorder (2.0) zesty; urgency=low 
+
+  * Added Wayland Support (GNOME Session).
+  * Added ability to select a specific window.
+  * Added ability to select a specific area.
+  * Added ability to show/hide mouse cursor.
+  * Added ability to follow mouse cursor.
+  * Added ability run a command after finishing recording.
+  * Indicator now checking for ffmpeg before running.
+  * Fixed some issues about multi-recordings.
+  * Cleaned some bad code, progressed a bit in supporting Python 3.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 5 Mar 2017 17:33:33 +0200
+
 green-recorder (1.1.2) zesty; urgency=low 
 
   * Used a better syntax in some places.
