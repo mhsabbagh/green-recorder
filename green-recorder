@@ -26,7 +26,6 @@ import subprocess, signal, threading
 # Define a loop and connect to the session bus. This is for Wayland recording under GNOME Shell.
 loop = GLib.MainLoop()
 bus = SessionBus()
-calling = bus.get('org.gnome.Shell.Screencast', '/org/gnome/Shell/Screencast')
 notifications = bus.get('.Notifications')
 
 # Get the current name of the Videos folder
@@ -37,6 +36,9 @@ try:
   DisplayServer = subprocess.check_output("ps cat | grep Xorg", shell=True)[:-1]
 except subprocess.CalledProcessError as e:
   DisplayServer = "wayland"
+if "wayland" in DisplayServer:
+  global calling
+  calling = bus.get('org.gnome.Shell.Screencast', '/org/gnome/Shell/Screencast')
   
 def recorderindicator():
     # Create the app indicator widget.
