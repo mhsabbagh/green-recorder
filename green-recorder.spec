@@ -37,7 +37,6 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{python2_sitelib}/*
 %{_datadir}/%{name}/*
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
