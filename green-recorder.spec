@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://green-project.github.io
-Version: 2.3
+Version: 2.4
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -40,6 +40,9 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Thu Mar 09 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.4-1
+- Fix glade file path (mhsabbagh@outlook.com)
+
 * Thu Mar 09 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.3-1
 - Fix #17, #18 (mhsabbagh@outlook.com)
 * Thu Mar 09 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com>
