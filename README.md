@@ -30,12 +30,6 @@ Green Recorder is available to install from a Fedora Copr repository for Fedora 
 
      sudo dnf copr enable mhsabbagh/greenproject 
      sudo dnf install green-recorder
-     
-### Arch Linux
-
-You can install Green recorder using your [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers):
-
-     yaourt -S green-recorder-git
 
 ### Other Distributions
 

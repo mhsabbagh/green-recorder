@@ -21,7 +21,7 @@ gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
-import subprocess, signal, threading
+import subprocess, signal, threading, datetime
 
 # Define a loop and connect to the session bus. This is for Wayland recording under GNOME Shell.
 loop = GLib.MainLoop()
@@ -70,7 +70,10 @@ def record():
     global RecorderWaylandPathName
     RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
-    RecorderFullPathName = folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id()
+    if len(filenameentry.get_text()) < 1:
+      RecorderFullPathName = folderchooser.get_uri() + '/' + str(datetime.datetime.now()) + '.' + formatchooser.get_active_id()
+    else:
+      RecorderFullPathName = folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id()
     RecorderFullPathName = RecorderFullPathName.replace('%20', " ")
     RecorderWaylandPathName = RecorderFullPathName.replace("file://", "")
     RecorderAudioServer = audioserver.get_active_id()
@@ -165,7 +168,7 @@ def stoprecording(self):
 
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("/usr/share/green-recorder/ui.glade")
+builder.add_from_file("ui/ui.glade")
 
 # TODO: Name the objects directly in the glade file and then use builder_get_objects() to import the objects with their names in just a single line.
 window = builder.get_object("window1")
@@ -211,7 +214,7 @@ mousecheck.set_label("Show Mouse")
 followmousecheck.set_label("Follow Mouse")
 aboutdialog.set_transient_for(window)
 aboutdialog.set_program_name("Green Recorder")
-aboutdialog.set_version("2.0")
+aboutdialog.set_version("2.1")
 aboutdialog.set_copyright("© 2017 Green Project")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
@@ -234,21 +237,21 @@ mousecheck.set_active(True)
 followmousecheck.set_active(False)
 # Check for the available audio server.
 try:
-   pulsecommand = subprocess.check_output("pulseaudio", shell=True)
-except subprocess.CalledProcessError as output:
-    if output.returncode == 127:
-        print ("No pulseaudio found", output.returncode)
-    else:
-        audioserver.append("pulse", "PulseAudio")
-try:
    alsacommand = subprocess.check_output("aserver", shell=True)
 except subprocess.CalledProcessError as output2:
     if output2.returncode == 127:
         print ("No alsa found", output2.returncode)
     else:
         audioserver.append("alsa", "Alsa Module")
+try:
+   pulsecommand = subprocess.check_output("pulseaudio", shell=True)
+except subprocess.CalledProcessError as output:
+    if output.returncode == 127:
+        print ("No pulseaudio found", output.returncode)
+    else:
+        audioserver.append("pulse", "PulseAudio")
 audioserver.set_active(0)
-  
+
 # Disable unavailable functions under Wayland.
 if "wayland" in DisplayServer:
   windowgrabbutton.set_sensitive(False)
@@ -258,7 +261,16 @@ if "wayland" in DisplayServer:
   formatchooser.append("webm", "WebM (The Open WebM Format)")
   formatchooser.set_active(0)
 
+  try:
+    s = subprocess.check_output("echo $GDK_BACKEND", shell=True)
+    if "x11" not in s:
+      notifications.Notify('GreenRecorder', 0, 'green-recorder', "You Are Using Wayland", "You didn't run the program using the application icon (desktop file). This will cause the program not to work. Run it using the icon from the menus only. (Need to export GDK_BACKEND=x11 first)", [], {}, 6000)
+    else:
+      pass
+  except:
+    pass
 # The actions which should happen upon every signal.
+
 class Handler:
     def about(self, GtkButton):
         aboutdialog.run()

@@ -219,6 +219,8 @@
                   <object class="GtkBox" id="box1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_right">10</property>
+                    <property name="margin_bottom">10</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkLabel" id="label2">
@@ -285,6 +287,7 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_right">10</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <placeholder/>
@@ -326,6 +329,7 @@
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="margin_right">10</property>
                     <property name="margin_top">5</property>
                     <property name="margin_bottom">5</property>
                     <property name="homogeneous">True</property>
@@ -398,12 +402,6 @@
           </object>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-        <child>
           <object class="GtkButton" id="button3">
             <property name="label">gtk-about</property>
             <property name="visible">True</property>
@@ -415,7 +413,7 @@
             <signal name="clicked" handler="about" swapped="no"/>
           </object>
           <packing>
-            <property name="position">3</property>
+            <property name="position">1</property>
           </packing>
         </child>
       </object>

@@ -1,3 +1,11 @@
+green-recorder (2.1) zesty; urgency=low 
+
+  * Changed the border of the record button.
+  * The recorder now uses default timestamp if name not provided.
+  * Display a warning when GDK_BACKEND=x11 is not defined on Wayland which may cause the program not to work.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Wed, 8 Mar 2017 19:33:33 +0200
+
 green-recorder (2.0) zesty; urgency=low 
 
   * Added Wayland Support (GNOME Session).

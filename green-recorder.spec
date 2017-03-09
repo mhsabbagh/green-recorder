@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://green-project.github.io
-Version: 2.2
+Version: 2.1
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -40,6 +40,10 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Thu Mar 09 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2-2
+- The recorder now uses default timestamp if name not provided.
+- Display a warning when GDK_BACKEND=x11 is not defined on Wayland which may cause the program not to work.
+
 * Sun Mar 05 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2-1
 - Fix a bug making the recorder not working on non-GNOME interfaces
   (mhsabbagh@outlook.com)
