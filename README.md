@@ -16,13 +16,17 @@ This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.c
 
 ## Download
 
-### Ubuntu 16.04/16.10/17.04
+### Ubuntu 16.04/16.10/17.04 or Linux Mint 18/18.1
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
     sudo add-apt-repository ppa:mhsabbagh/greenproject
     sudo apt update
     sudo apt install green-recorder
+
+### Debian
+
+You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/mhsabbagh/greenproject/ubuntu/pool/main/
 
 ### Fedora 24/25/26
 
