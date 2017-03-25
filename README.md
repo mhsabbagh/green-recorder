@@ -4,19 +4,19 @@
 
 ## About
 
-A simple yet functional desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. It supports recording audio and video on almost all Linux interfaces. Also **supports Wayland display server on GNOME session**.
+A simple yet functional desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. It supports recording audio and video on almost all Linux interfaces. Also, Green Recorder is the **first desktop program to support Wayland display server on GNOME session**.
 
 The following formats are currently supported: **mkv**, **avi**, **mp4**, **wmv** and **nut** (And only WebM for Wayland's GNOME session). You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
 Green recorder uses the default audio device you have to record. So if you want to change the audio input source, you just need to change it from the system-side (using **pavucontrol** for example).
 
-By default, On Wayland only, Green Recorder uses the V8 encoder instead of the default V9 encoder in GNOME Shell because of the CPU & RAM consumption issue (#757172). Which should also give you better performance. On Xorg, each format uses its own default encoder.
+By default, On Wayland only, Green Recorder uses the V8 encoder instead of the default V9 encoder in GNOME Shell because of the CPU & RAM consumption issue with V9. Which - now - should also give you better performance. On Xorg, each format uses its own default encoder.
 
 This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.com/watch?v=kwCRBoOdJzU](https://www.youtube.com/watch?v=kwCRBoOdJzU)
 
 ## Download
 
-### Ubuntu 16.04/16.10/17.04
+### Ubuntu 16.04/16.10/17.04 or Linux Mint 18/18.1
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
@@ -24,12 +24,22 @@ Make sure you have enabled the multiverse and universe repositories before tryin
     sudo apt update
     sudo apt install green-recorder
 
+### Debian
+
+You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/mhsabbagh/greenproject/ubuntu/pool/main/
+
 ### Fedora 24/25/26
 
 Green Recorder is available to install from a Fedora Copr repository for Fedora 25:
 
      sudo dnf copr enable mhsabbagh/greenproject 
      sudo dnf install green-recorder
+     
+### Arch Linux
+
+You can install Green recorder using your [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers):
+
+    yaourt -S green-recorder-git
 
 ### Other Distributions
 
