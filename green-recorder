@@ -21,7 +21,7 @@ gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
-import subprocess, signal, threading, datetime
+import subprocess, signal, threading, datetime, urllib
 
 # Define a loop and connect to the session bus. This is for Wayland recording under GNOME Shell.
 loop = GLib.MainLoop()
@@ -71,10 +71,9 @@ def record():
     RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
     if len(filenameentry.get_text()) < 1:
-      RecorderFullPathName = folderchooser.get_uri() + '/' + str(datetime.datetime.now()) + '.' + formatchooser.get_active_id()
+      RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + str(datetime.datetime.now()) + '.' + formatchooser.get_active_id())
     else:
-      RecorderFullPathName = folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id()
-    RecorderFullPathName = RecorderFullPathName.replace('%20', " ")
+      RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
     RecorderWaylandPathName = RecorderFullPathName.replace("file://", "")
     RecorderAudioServer = audioserver.get_active_id()
     RecorderPipeline = "vp8enc min_quantizer=13 max_quantizer=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux"
@@ -327,4 +326,3 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal.SIG_DFL)
     window.show_all()
     Gtk.main()
-    

@@ -1,3 +1,9 @@
+green-recorder (2.1.1) zesty; urgency=low 
+
+  * Fixed issue #22 for non-English folder names.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sat, 25 Mar 2017 16:33:33 +0200
+
 green-recorder (2.1) zesty; urgency=low 
 
   * Changed the border of the record button.
