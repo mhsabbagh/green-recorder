@@ -30,10 +30,7 @@ You can grab the Debian packages directly from the PPA itself and install it on 
 
 ### Fedora 24/25/26
 
-Green Recorder is available to install from a Fedora Copr repository for Fedora 25:
-
-     sudo dnf copr enable mhsabbagh/greenproject 
-     sudo dnf install green-recorder
+Unfortunately, Fedora removed our Copr repo because of it's depending on ffmpeg without any notification or message. Users who would like to use Green Recorder on Fedora should try the steps under "Other Distributions" section below.
      
 ### Arch Linux
 
