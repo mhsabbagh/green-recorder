@@ -45,7 +45,7 @@
     <property name="opacity">0.98000000022351741</property>
     <property name="margin_bottom">1</property>
     <property name="window_position">center</property>
-    <property name="icon_name">green-recorder</property>
+    <property name="icon">/usr/share/pixmaps/green-recorder.png</property>
     <property name="gravity">center</property>
     <child>
       <object class="GtkBox" id="box3">
