@@ -30,6 +30,8 @@ notifications = bus.get('.Notifications')
 
 # Get the current name of the Videos folder
 VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS) 
+if VideosFolder is None:
+  VideosFolder = subprocess.check_output("echo $HOME", shell=True)[:-1]
 RecorderDisplay = subprocess.check_output("xdpyinfo | grep 'dimensions:'|awk '{print $2}'", shell=True)[:-1]
 DISPLAY = subprocess.check_output("echo $DISPLAY", shell=True)[:-1]
 try:
@@ -43,7 +45,7 @@ if "wayland" in DisplayServer:
 def recorderindicator():
     # Create the app indicator widget.
     global indicator
-    indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator = appindicator.Indicator.new("Green Recorder", 'green-recorder', appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(indicator_menu())
     # Make middle-click stops the recording process.

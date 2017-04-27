@@ -14,6 +14,8 @@ By default, On Wayland only, Green Recorder uses the V8 encoder instead of the d
 
 This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.com/watch?v=kwCRBoOdJzU](https://www.youtube.com/watch?v=kwCRBoOdJzU)
 
+Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/greenproject
+
 ## Download
 
 ### Ubuntu 16.04/16.10/17.04 or Linux Mint 18/18.1
@@ -31,6 +33,8 @@ You can grab the Debian packages directly from the PPA itself and install it on 
 ### Fedora 24/25/26
 
 Unfortunately, Fedora removed our Copr repo because of it's depending on ffmpeg without any notification or message. Users who would like to use Green Recorder on Fedora should try the steps under "Other Distributions" section below.
+
+You may try building the .rpm package locally using the .spec file we provide. Note: if you installed Green Recorder from the Copr repository before it was removed, you should remove it and disable that Copr and install it from source code.
      
 ### Arch Linux
 
