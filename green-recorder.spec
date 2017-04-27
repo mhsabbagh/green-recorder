@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://green-project.github.io
-Version: 2.1.4
+Version: 2.1.5
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
