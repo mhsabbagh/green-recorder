@@ -10,6 +10,12 @@ The following formats are currently supported: **mkv**, **avi**, **mp4**, **wmv*
 
 Green recorder uses the default audio device you have to record. So if you want to change the audio input source, you just need to change it from the system-side (using **pavucontrol** for example).
 
+### How it works?
+
+It uses the D-Bus API to connect to the built-in screencasting tool in GNOME Shell. It uses this to record video. To record audio, it launches an instance of ffmpeg in the background. After the recording is finished, it merges the two files into the WebM file.
+
+For Xorg, it uses ffmpeg only for both audio and video.
+
 By default, On Wayland only, Green Recorder uses the V8 encoder instead of the default V9 encoder in GNOME Shell because of the CPU & RAM consumption issue with V9. Which - now - should also give you better performance. On Xorg, each format uses its own default encoder.
 
 This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.com/watch?v=kwCRBoOdJzU](https://www.youtube.com/watch?v=kwCRBoOdJzU)
