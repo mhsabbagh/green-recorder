@@ -1,3 +1,11 @@
+green-recorder (2.2) zesty; urgency=low 
+
+  * Added localization support.
+  * Added Arabic language.
+  * Changed window opacity to 1.00
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Tue, 6 Jun 2017 00:33:33 +0200
+
 green-recorder (2.1.5) zesty; urgency=low 
 
   * Another try to fix #25.

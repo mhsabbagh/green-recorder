@@ -22,6 +22,12 @@ This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.c
 
 Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/greenproject
 
+### Localization
+
+Green Recorder supports localization. If you want to translate the program into your language, fork the repository on GitHub and create a new file under "po" folder with your language ISO code (like fr.po, de.po, cs.po..). And translate the strings from there.
+
+Alternatively, you can open the green-recorder.pot file using programs like PoEdit and start translating.
+
 ## Download
 
 ### Ubuntu 16.04/16.10/17.04/17.10 or Linux Mint 18/18.1

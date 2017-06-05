@@ -3,7 +3,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://green-project.github.io
-Version: 2.1.5
+Version: 2.2
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -15,10 +15,9 @@ Requires: ffmpeg
 Requires: gawk
 Requires: libappindicator-gtk3
 Requires: python2-urllib3
-Requires: rpmfusion-free-release 
 
 %description
-A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
+A simple desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 
 %prep
 %autosetup -n %{name}-%{version}
@@ -37,6 +36,11 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Tue Jun 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2
+- Added localization support.
+- Added Arabic language.
+- Changed window opacity to 1.00
+
 * Thu Apr 27 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.1.5
 - Fix bug #25.
 

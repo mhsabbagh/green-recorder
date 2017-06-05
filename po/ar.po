@@ -1,0 +1,103 @@
+# Green Recorder
+# Copyright (C) 2017, Green Project
+# This file is distributed under the same license as the green-recorder package.
+# M.Hanny Sabbagh <mhsabbagh@outlook.com>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-06 00:29+0300\n"
+"PO-Revision-Date: 2017-06-06 00:31+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Language: ar\n"
+
+#: green-recorder:206 green-recorder:223
+msgid "Green Recorder"
+msgstr "المسجّل الأخضر"
+
+#: green-recorder:207
+msgid "AreaChooser"
+msgstr "محدد المنطقة"
+
+#: green-recorder:210
+msgid "File Name (Will be overwritten).."
+msgstr "اسم الملف (سيتم الكتابة فوقه)"
+
+#: green-recorder:211
+msgid "Enter your command here.."
+msgstr "قم بإدخال الأمر هنا"
+
+#: green-recorder:212
+msgid "MKV (Matroska multimedia container format)"
+msgstr "MKV (Matroska multimedia container format)"
+
+#: green-recorder:213
+msgid "AVI (Audio Video Interleaved)"
+msgstr "AVI (Audio Video Interleaved)"
+
+#: green-recorder:214
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr "MP4 (MPEG-4 Part 14)"
+
+#: green-recorder:215
+msgid "WMV (Windows Media Video)"
+msgstr "WMV (Windows Media Video)"
+
+#: green-recorder:216
+msgid "NUT (NUT Recording Format)"
+msgstr "NUT (NUT Recording Format)"
+
+#: green-recorder:218
+msgid "Record Video"
+msgstr "تسجيل الفيديو"
+
+#: green-recorder:219
+msgid "Record Microphone"
+msgstr "تسجيل الميكروفون"
+
+#: green-recorder:220
+msgid "Show Mouse"
+msgstr "إظهار الفأرة"
+
+#: green-recorder:221
+msgid "Follow Mouse"
+msgstr "اتّباع الفأرة"
+
+#: green-recorder:228
+msgid "An easy to use desktop recorder for Xorg and Wayland."
+msgstr "مسجل سطح مكتب سهل لـXorg وWayland."
+
+#: green-recorder:233
+msgid "Select a Window"
+msgstr "اختيار نافذة"
+
+#: green-recorder:234
+msgid "Select an Area"
+msgstr "تحديد منطقة"
+
+#: green-recorder:235
+msgid "Advanced:"
+msgstr "متقدّم:"
+
+#: green-recorder:236
+msgid "Frames:"
+msgstr "الإطارات"
+
+#: green-recorder:237
+msgid "Delay:"
+msgstr "التأخير:"
+
+#: green-recorder:238
+msgid "Audio Input:"
+msgstr "مدخل الصوت:"
+
+#: green-recorder:239
+msgid "Run Command After Recording:"
+msgstr "تشغيل أمر عند الانتهاء:"

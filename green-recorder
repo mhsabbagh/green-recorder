@@ -21,7 +21,14 @@ gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
-import subprocess, signal, threading, datetime, urllib
+import subprocess, signal, threading, datetime, urllib, gettext, locale
+
+# Localization.
+locale.setlocale(locale.LC_ALL, '')
+gettext.bindtextdomain('green-recorder', '/usr/share/locale')
+gettext.textdomain('green-recorder')
+_ = gettext.gettext
+gettext.install("green-recorder", "/usr/share/locale")
 
 # Define a loop and connect to the session bus. This is for Wayland recording under GNOME Shell.
 loop = GLib.MainLoop()
@@ -169,7 +176,7 @@ def stoprecording(self):
 
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("ui/ui.glade")
+builder.add_from_file("/usr/share/green-recorder/ui.glade")
 
 # Create pointers.
 window = builder.get_object("window1")
@@ -196,41 +203,40 @@ delayvalue = builder.get_object("spinbutton2")
 expander = builder.get_object("expandertext")
 
 # Assign the texts to the interface
-# TODO: support internationalization using gettext.
-window.set_title("Green Recorder")
-areachooser.set_name('AreaChooser')
+window.set_title(_("Green Recorder"))
+areachooser.set_name(_('AreaChooser'))
 window.connect("delete-event", Gtk.main_quit,)
 folderchooser.set_uri("file://" + VideosFolder)
-filenameentry.set_placeholder_text("File Name (Will be overwritten)..")
-commandentry.set_placeholder_text("Enter your command here..")
-formatchooser.append("mkv", "MKV (Matroska multimedia container format)")
-formatchooser.append("avi", "AVI (Audio Video Interleaved)")
-formatchooser.append("mp4", "MP4 (MPEG-4 Part 14)")
-formatchooser.append("wmv", "WMV (Windows Media Video)")
-formatchooser.append("nut", "NUT (NUT Recording Format)")
+filenameentry.set_placeholder_text(_("File Name (Will be overwritten).."))
+commandentry.set_placeholder_text(_("Enter your command here.."))
+formatchooser.append("mkv", _("MKV (Matroska multimedia container format)"))
+formatchooser.append("avi", _("AVI (Audio Video Interleaved)"))
+formatchooser.append("mp4", _("MP4 (MPEG-4 Part 14)"))
+formatchooser.append("wmv", _("WMV (Windows Media Video)"))
+formatchooser.append("nut", _("NUT (NUT Recording Format)"))
 formatchooser.set_active(0)
-videocheck.set_label("Record Video")
-microphonecheck.set_label("Record Microphone")
-mousecheck.set_label("Show Mouse")
-followmousecheck.set_label("Follow Mouse")
+videocheck.set_label(_("Record Video"))
+microphonecheck.set_label(_("Record Microphone"))
+mousecheck.set_label(_("Show Mouse"))
+followmousecheck.set_label(_("Follow Mouse"))
 aboutdialog.set_transient_for(window)
-aboutdialog.set_program_name("Green Recorder")
-aboutdialog.set_version("2.1")
+aboutdialog.set_program_name(_("Green Recorder"))
+aboutdialog.set_version("2.2")
 aboutdialog.set_copyright("© 2017 Green Project")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
-aboutdialog.set_comments("An easy to use yet strong desktop recorder.")
+aboutdialog.set_comments(_("An easy to use desktop recorder for Xorg and Wayland."))
 aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>'])
 aboutdialog.set_artists(['Mustapha Assabar'])
 aboutdialog.set_website("https://github.com/green-project/green-recorder")
 aboutdialog.set_logo_icon_name("green-recorder")
-windowgrabbutton.set_label("Select a Window")
-areagrabbutton.set_label("Select an Area")
-expander.set_label("Advanced:")
-frametext.set_label("Frames:")
-delaytext.set_label("Delay:")
-audioservertext.set_label("Audio Input:")
-commandtext.set_label("Run Command After Recording:")
+windowgrabbutton.set_label(_("Select a Window"))
+areagrabbutton.set_label(_("Select an Area"))
+expander.set_label(_("Advanced:"))
+frametext.set_label(_("Frames:"))
+delaytext.set_label(_("Delay:"))
+audioservertext.set_label(_("Audio Input:"))
+commandtext.set_label(_("Run Command After Recording:"))
 # Make default checkboxes True.
 videocheck.set_active(True)
 microphonecheck.set_active(True)

@@ -1,0 +1,103 @@
+# Green Recorder
+# Copyright (C) 2017, Green Project
+# This file is distributed under the same license as the green-recorder package.
+
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-06 00:23+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: green-recorder:206 green-recorder:223
+msgid "Green Recorder"
+msgstr ""
+
+#: green-recorder:207
+msgid "AreaChooser"
+msgstr ""
+
+#: green-recorder:210
+msgid "File Name (Will be overwritten).."
+msgstr ""
+
+#: green-recorder:211
+msgid "Enter your command here.."
+msgstr ""
+
+#: green-recorder:212
+msgid "MKV (Matroska multimedia container format)"
+msgstr ""
+
+#: green-recorder:213
+msgid "AVI (Audio Video Interleaved)"
+msgstr ""
+
+#: green-recorder:214
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr ""
+
+#: green-recorder:215
+msgid "WMV (Windows Media Video)"
+msgstr ""
+
+#: green-recorder:216
+msgid "NUT (NUT Recording Format)"
+msgstr ""
+
+#: green-recorder:218
+msgid "Record Video"
+msgstr ""
+
+#: green-recorder:219
+msgid "Record Microphone"
+msgstr ""
+
+#: green-recorder:220
+msgid "Show Mouse"
+msgstr ""
+
+#: green-recorder:221
+msgid "Follow Mouse"
+msgstr ""
+
+#: green-recorder:228
+msgid "An easy to use desktop recorder for Xorg and Wayland."
+msgstr ""
+
+#: green-recorder:233
+msgid "Select a Window"
+msgstr ""
+
+#: green-recorder:234
+msgid "Select an Area"
+msgstr ""
+
+#: green-recorder:235
+msgid "Advanced:"
+msgstr ""
+
+#: green-recorder:236
+msgid "Frames:"
+msgstr ""
+
+#: green-recorder:237
+msgid "Delay:"
+msgstr ""
+
+#: green-recorder:238
+msgid "Audio Input:"
+msgstr ""
+
+#: green-recorder:239
+msgid "Run Command After Recording:"
+msgstr ""
