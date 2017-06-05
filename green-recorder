@@ -169,9 +169,9 @@ def stoprecording(self):
 
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("/usr/share/green-recorder/ui.glade")
+builder.add_from_file("ui/ui.glade")
 
-# TODO: Name the objects directly in the glade file and then use builder_get_objects() to import the objects with their names in just a single line.
+# Create pointers.
 window = builder.get_object("window1")
 areachooser = builder.get_object("window2")
 aboutdialog = builder.get_object("aboutdialog")
