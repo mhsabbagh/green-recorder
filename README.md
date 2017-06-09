@@ -42,7 +42,7 @@ Make sure you have enabled the multiverse and universe repositories before tryin
 
 You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/mhsabbagh/greenproject/ubuntu/pool/main/
 
-### Fedora 24/25/26
+### Fedora 24/25/26/Rawhide
 
 To install Green Recorder on Fedora 24:
 
@@ -51,18 +51,18 @@ To install Green Recorder on Fedora 24:
 
 Fedora 25:
 
-    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_25/home:mhsabbagh.repo
-    dnf install green-recorder
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_25/home:mhsabbagh.repo
+    sudo dnf install green-recorder
 
 Fedora 26:
 
-    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_26/home:mhsabbagh.repo
-    dnf install green-recorder
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_26/home:mhsabbagh.repo
+    sudo dnf install green-recorder
 
 Fedora Rawhide:
 
-    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
-    dnf install green-recorder
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
+    sudo dnf install green-recorder
 
 ### CentOS 7
 
