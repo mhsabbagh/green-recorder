@@ -44,9 +44,33 @@ You can grab the Debian packages directly from the PPA itself and install it on 
 
 ### Fedora 24/25/26
 
-Unfortunately, Fedora removed our Copr repo because of it's depending on ffmpeg without any notification or message. Users who would like to use Green Recorder on Fedora should try the steps under "Other Distributions" section below.
+To install Green Recorder on Fedora 24:
 
-You may try building the .rpm package locally using the .spec file we provide. Note: if you installed Green Recorder from the Copr repository before it was removed, you should remove it and disable that Copr and install it from source code.
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_24/home:mhsabbagh.repo
+    sudo dnf install green-recorder
+
+Fedora 25:
+
+    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_25/home:mhsabbagh.repo
+    dnf install green-recorder
+
+Fedora 26:
+
+    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_26/home:mhsabbagh.repo
+    dnf install green-recorder
+
+Fedora Rawhide:
+
+    dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
+    dnf install green-recorder
+
+### CentOS 7
+
+Run the following commands as root:
+
+    cd /etc/yum.repos.d/
+    wget http://download.opensuse.org/repositories/home:mhsabbagh/CentOS_7/home:mhsabbagh.repo
+    yum install green-recorder
      
 ### Arch Linux
 
