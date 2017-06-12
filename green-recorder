@@ -21,7 +21,27 @@ gi.require_version('AppIndicator3', '0.1')
 
 from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
-import subprocess, signal, threading, datetime, urllib, gettext, locale
+import subprocess, signal, threading, datetime, urllib, gettext, locale, os, ConfigParser
+
+# Configuration
+confDir =  os.path.join(GLib.get_user_config_dir(), 'green-recorder/')
+confFile = os.path.join(confDir + "config.ini")
+config = ConfigParser.ConfigParser()
+
+if not os.path.exists(confDir):
+  os.makedirs(confDir)
+
+if os.path.isfile(confFile):
+  config.read(confFile)
+else:
+  config.add_section('Options')
+  config.set('Options', 'frames', '30')
+  config.set('Options', 'delay', '0')
+  config.set('Options', 'folder', "file://" + GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS))
+  config.set('Options', 'pipeline', 'vp8enc min_quantizer=13 max_quantizer=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux')
+  config.set('Options', 'command', '')
+  with open(confFile, 'wb') as confFile:
+    config.write(confFile)
 
 # Localization.
 locale.setlocale(locale.LC_ALL, '')
@@ -85,7 +105,6 @@ def record():
       RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
     RecorderWaylandPathName = RecorderFullPathName.replace("file://", "")
     RecorderAudioServer = audioserver.get_active_id()
-    RecorderPipeline = "vp8enc min_quantizer=13 max_quantizer=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux"
     RecorderShowCursor = str(int(bool(mousecheck.get_active())))
     print RecorderShowCursor
     if followmousecheck.get_active() == True:
@@ -181,8 +200,10 @@ builder.add_from_file("/usr/share/green-recorder/ui.glade")
 # Create pointers.
 window = builder.get_object("window1")
 areachooser = builder.get_object("window2")
+preferenceswindow = builder.get_object("preferenceswindow")
 aboutdialog = builder.get_object("aboutdialog")
 folderchooser = builder.get_object("filechooserbutton1")
+folderchooser2 = builder.get_object("filechooserbutton2")
 filenameentry = builder.get_object("entry1")
 commandentry = builder.get_object("entry2")
 formatchooser = builder.get_object("comboboxtext1")
@@ -201,14 +222,26 @@ commandtext = builder.get_object("label6")
 framesvalue = builder.get_object("spinbutton1")
 delayvalue = builder.get_object("spinbutton2")
 expander = builder.get_object("expandertext")
+frameslabel = builder.get_object("frameslabel")
+delaylabel = builder.get_object("delaylabel")
+folderlabel = builder.get_object("folderlabel")
+pipelinelabel = builder.get_object("pipelinelabel")
+commandlabel = builder.get_object("commandlabel")
+framespref = builder.get_object("spinbutton3")
+delaypref = builder.get_object("spinbutton4")
+delayadjustment = builder.get_object("adjustment1")
+framesadjustment = builder.get_object("adjustment2")
+pipelineentry = builder.get_object("gtkentry1")
+commandentry2 = builder.get_object("gtkentry2")
 
 # Assign the texts to the interface
 window.set_title(_("Green Recorder"))
 areachooser.set_name(_('AreaChooser'))
-window.connect("delete-event", Gtk.main_quit,)
-folderchooser.set_uri("file://" + VideosFolder)
+preferenceswindow.set_title(_('Green Recorder Preferences'))
+window.connect("delete-event", Gtk.main_quit)
 filenameentry.set_placeholder_text(_("File Name (Will be overwritten).."))
 commandentry.set_placeholder_text(_("Enter your command here.."))
+commandentry2.set_placeholder_text(_("Enter your command here.."))
 formatchooser.append("mkv", _("MKV (Matroska multimedia container format)"))
 formatchooser.append("avi", _("AVI (Audio Video Interleaved)"))
 formatchooser.append("mp4", _("MP4 (MPEG-4 Part 14)"))
@@ -230,6 +263,7 @@ aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>'])
 aboutdialog.set_artists(['Mustapha Assabar'])
 aboutdialog.set_website("https://github.com/green-project/green-recorder")
 aboutdialog.set_logo_icon_name("green-recorder")
+preferenceswindow.set_icon_name("green-recorder")
 windowgrabbutton.set_label(_("Select a Window"))
 areagrabbutton.set_label(_("Select an Area"))
 expander.set_label(_("Advanced:"))
@@ -237,11 +271,30 @@ frametext.set_label(_("Frames:"))
 delaytext.set_label(_("Delay:"))
 audioservertext.set_label(_("Audio Input:"))
 commandtext.set_label(_("Run Command After Recording:"))
+frameslabel.set_label(_("Default frames:"))
+delaylabel.set_label(_("Default delay:"))
+folderlabel.set_label(_("Default folder:"))
+pipelinelabel.set_label(_("Default Wayland pipeline:"))
+commandlabel.set_label(_("Default command:"))
+
+# Get defaults from configuration file.
+delayadjustment.set_value(int(config.get('Options', 'delay')))
+framesadjustment.set_value(int(config.get('Options', 'frames')))
+FolderPath = config.get('Options', 'folder')
+folderchooser.set_uri(urllib.unquote(FolderPath))
+folderchooser2.set_uri(urllib.unquote(FolderPath))
+pipelineentry.set_text(config.get('Options', 'pipeline'))
+commandentry.set_text(config.get('Options', 'command'))
+commandentry2.set_text(config.get('Options', 'command'))
+global RecorderPipeline
+RecorderPipeline = pipelineentry.get_text()
+
 # Make default checkboxes True.
 videocheck.set_active(True)
 microphonecheck.set_active(True)
 mousecheck.set_active(True)
 followmousecheck.set_active(False)
+
 # Check for the available audio server.
 try:
    alsacommand = subprocess.check_output("aserver", shell=True)
@@ -300,6 +353,11 @@ class Handler:
         areachooser.set_title("Area Chooser")
         areachooser.show()
         
+    def preferencesbuttonclicked(self, GtkButton):
+        preferenceswindow.show()
+        
+    def preferencesclosebutton(self, GtkButton):
+        preferenceswindow.hide()
 
     def areasettings(self, GtkButton):
         output = subprocess.check_output(["xwininfo -name \"Area Chooser\" | grep -e Width -e Height -e Absolute"], shell=True)[:-1]
@@ -313,6 +371,35 @@ class Handler:
         areachooser.hide()
         notifications.Notify('GreenRecorder', 0, 'green-recorder', "Green Recorder", "Your area position has been saved!", [], {}, 3000)
         
+    def frameschanged(self, GtkSpinButton):
+        config.set('Options', 'frames', int(float(framespref.get_value())))
+        global confFile
+        with open(confFile, 'w+') as newconfFile:
+          config.write(newconfFile)
+
+    def delaychanged(self, GtkSpinButton):
+        config.set('Options', 'delay', int(float(delaypref.get_value())))
+        global confFile
+        with open(confFile, 'w+') as newconfFile:
+          config.write(newconfFile)
+          
+    def folderchosen(self, GtkFileChooserButton):
+        config.set('Options', 'folder', urllib.unquote(folderchooser2.get_uri()))
+        global confFile
+        with open(confFile, 'w+') as newconfFile:
+          config.write(newconfFile)
+          
+    def pipelinechanged(self, GtkEntry):
+        config.set('Options', 'pipeline', pipelineentry.get_text())
+        global confFile
+        with open(confFile, 'w+') as newconfFile:
+          config.write(newconfFile)
+    
+    def commandchanged(self, GtkEntry):
+        config.set('Options', 'command', commandentry2.get_text())
+        global confFile
+        with open(confFile, 'w+') as newconfFile:
+          config.write(newconfFile)
     
 # Connect the handler to the glade file's objects.
 builder.connect_signals(Handler())

@@ -223,7 +223,6 @@
               <object class="GtkEntry" id="gtkentry2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <signal name="changed" handler="commandchanged" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

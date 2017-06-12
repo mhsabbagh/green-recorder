@@ -1,7 +1,6 @@
-# Green Recorder
-# Copyright (C) 2017, Green Project
-# This file is distributed under the same license as the green-recorder package.
-
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
@@ -9,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-06 00:23+0300\n"
+"POT-Creation-Date: 2017-06-12 15:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,86 +17,110 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: green-recorder:206 green-recorder:223
+#: green-recorder:238 green-recorder:256
 msgid "Green Recorder"
 msgstr ""
 
-#: green-recorder:207
+#: green-recorder:239
 msgid "AreaChooser"
 msgstr ""
 
-#: green-recorder:210
+#: green-recorder:240
+msgid "Green Recorder Preferences"
+msgstr ""
+
+#: green-recorder:242
 msgid "File Name (Will be overwritten).."
 msgstr ""
 
-#: green-recorder:211
+#: green-recorder:243 green-recorder:244
 msgid "Enter your command here.."
 msgstr ""
 
-#: green-recorder:212
+#: green-recorder:245
 msgid "MKV (Matroska multimedia container format)"
 msgstr ""
 
-#: green-recorder:213
+#: green-recorder:246
 msgid "AVI (Audio Video Interleaved)"
 msgstr ""
 
-#: green-recorder:214
+#: green-recorder:247
 msgid "MP4 (MPEG-4 Part 14)"
 msgstr ""
 
-#: green-recorder:215
+#: green-recorder:248
 msgid "WMV (Windows Media Video)"
 msgstr ""
 
-#: green-recorder:216
+#: green-recorder:249
 msgid "NUT (NUT Recording Format)"
 msgstr ""
 
-#: green-recorder:218
+#: green-recorder:251
 msgid "Record Video"
 msgstr ""
 
-#: green-recorder:219
+#: green-recorder:252
 msgid "Record Microphone"
 msgstr ""
 
-#: green-recorder:220
+#: green-recorder:253
 msgid "Show Mouse"
 msgstr ""
 
-#: green-recorder:221
+#: green-recorder:254
 msgid "Follow Mouse"
 msgstr ""
 
-#: green-recorder:228
+#: green-recorder:261
 msgid "An easy to use desktop recorder for Xorg and Wayland."
 msgstr ""
 
-#: green-recorder:233
+#: green-recorder:267
 msgid "Select a Window"
 msgstr ""
 
-#: green-recorder:234
+#: green-recorder:268
 msgid "Select an Area"
 msgstr ""
 
-#: green-recorder:235
+#: green-recorder:269
 msgid "Advanced:"
 msgstr ""
 
-#: green-recorder:236
+#: green-recorder:270
 msgid "Frames:"
 msgstr ""
 
-#: green-recorder:237
+#: green-recorder:271
 msgid "Delay:"
 msgstr ""
 
-#: green-recorder:238
+#: green-recorder:272
 msgid "Audio Input:"
 msgstr ""
 
-#: green-recorder:239
+#: green-recorder:273
 msgid "Run Command After Recording:"
+msgstr ""
+
+#: green-recorder:274
+msgid "Default frames:"
+msgstr ""
+
+#: green-recorder:275
+msgid "Default delay:"
+msgstr ""
+
+#: green-recorder:276
+msgid "Default folder:"
+msgstr ""
+
+#: green-recorder:277
+msgid "Default Wayland pipeline:"
+msgstr ""
+
+#: green-recorder:278
+msgid "Default command:"
 msgstr ""
