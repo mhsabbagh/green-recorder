@@ -270,7 +270,13 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-about</property>
   </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-media-play</property>
+  </object>
   <object class="GtkWindow" id="window1">
+    <property name="width_request">550</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="opacity">0.99999999977648257</property>
@@ -631,6 +637,20 @@
             <property name="always_show_image">True</property>
             <signal name="clicked" handler="recordclicked" swapped="no"/>
           </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="playbutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="image">image3</property>
+            <property name="relief">none</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="playbuttonclicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="position">3</property>
+          </packing>
         </child>
         <child>
           <object class="GtkButton" id="button3">

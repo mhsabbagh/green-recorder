@@ -56,9 +56,6 @@ bus = SessionBus()
 notifications = bus.get('.Notifications')
 
 # Get the current name of the Videos folder
-VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS) 
-if VideosFolder is None:
-  VideosFolder = subprocess.check_output("echo $HOME", shell=True)[:-1]
 RecorderDisplay = subprocess.check_output("xdpyinfo | grep 'dimensions:'|awk '{print $2}'", shell=True)[:-1]
 DISPLAY = subprocess.check_output("echo $DISPLAY", shell=True)[:-1]
 try:
@@ -96,14 +93,14 @@ def record():
     
     # Get the given values from the input fields.
     global RecorderFullPathName
-    global RecorderWaylandPathName
+    global RecorderAbsPathName
     RecorderDelay = str(delayvalue.get_value_as_int())
     RecorderFrames = str(framesvalue.get_value_as_int())
     if len(filenameentry.get_text()) < 1:
       RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + str(datetime.datetime.now()) + '.' + formatchooser.get_active_id())
     else:
       RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
-    RecorderWaylandPathName = RecorderFullPathName.replace("file://", "")
+    RecorderAbsPathName = RecorderFullPathName.replace("file://", "")
     RecorderAudioServer = audioserver.get_active_id()
     RecorderShowCursor = str(int(bool(mousecheck.get_active())))
     print RecorderShowCursor
@@ -138,6 +135,7 @@ def record():
       # Check the status of ffmpeg, to see if it's working or not before launching the indicator.
       if "defunc" not in p:
         recorderindicator()
+        playbutton.set_sensitive(True)
       else:
         print ("ffmpeg not running for some reason. Up you can see the output of ffmpeg.")
         window.show()
@@ -149,24 +147,26 @@ def record():
         try:
           r
         except NameError:
-          p = calling.Screencast(RecorderWaylandPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
+          p = calling.Screencast(RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
         else:
-          p = calling.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderWaylandPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
+          p = calling.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
       elif videocheck.get_active() == False and microphonecheck.get_active() == True:
         RecorderProcess = subprocess.Popen(["ffmpeg", "-f", RecorderAudioServer, "-i", "default", "-ac", "1", "/tmp/Green-recorder-tmp.mkv", "-y"])
       elif videocheck.get_active() == True and microphonecheck.get_active() == False:
         try:
           r
         except NameError:
-          p = calling.Screencast(RecorderWaylandPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
+          p = calling.Screencast(RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
         else:
-          p = calling.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderWaylandPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
+          p = calling.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
       else:
         print ("You didn't choose anything to record?")
     
       t = threading.RLock()
       with t:
         recorderindicator()
+        playbutton.set_sensitive(True)
+
       
 def stoprecording(self):
     RecorderCommand = commandentry.get_text()
@@ -187,9 +187,9 @@ def stoprecording(self):
       s = calling.StopScreencast()
       if videocheck.get_active() == True and microphonecheck.get_active() == True:
         m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
-        k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderWaylandPathName])
+        k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderAbsPathName])
       elif videocheck.get_active() == False and microphonecheck.get_active() == True:
-        k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderWaylandPathName])       
+        k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])       
     window.show()
     subprocess.Popen([RecorderCommand], shell=True)
 
@@ -233,6 +233,8 @@ delayadjustment = builder.get_object("adjustment1")
 framesadjustment = builder.get_object("adjustment2")
 pipelineentry = builder.get_object("gtkentry1")
 commandentry2 = builder.get_object("gtkentry2")
+playbutton = builder.get_object("playbutton")
+
 
 # Assign the texts to the interface
 window.set_title(_("Green Recorder"))
@@ -294,6 +296,7 @@ videocheck.set_active(True)
 microphonecheck.set_active(True)
 mousecheck.set_active(True)
 followmousecheck.set_active(False)
+playbutton.set_sensitive(False)
 
 # Check for the available audio server.
 try:
@@ -358,6 +361,9 @@ class Handler:
         
     def preferencesclosebutton(self, GtkButton):
         preferenceswindow.hide()
+        
+    def playbuttonclicked(self, GtkButton):
+        subprocess.call(["xdg-open", urllib.unquote(RecorderAbsPathName)])
 
     def areasettings(self, GtkButton):
         output = subprocess.check_output(["xwininfo -name \"Area Chooser\" | grep -e Width -e Height -e Absolute"], shell=True)[:-1]
@@ -365,7 +371,7 @@ class Handler:
         r = [int(l.split(':')[1]) for l in output.split('\n')]
         global WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
         WindowXAxis = r[0]
-        WindowYAxis = r[1] + 28 # -28 becaues of a small bug in xwininfo which makes it takes the frame if the option -name is used with it.
+        WindowYAxis = r[1] + 28 # +28 becaues of a small bug in xwininfo which makes it takes the frame if the option -name is used with it.
         WindowWidth = r[2]
         WindowHeight = r[3] - 28
         areachooser.hide()
