@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR <robert@orzanna.de>, 2017.
 #
 msgid ""
 msgstr ""
@@ -14,9 +14,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 2.0.1\n"
-"Last-Translator: \n"
+"Last-Translator: Robert Orzanna robert@orzanna.de"
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
-"Language: ar\n"
+"Language: de\n"
 
 #: green-recorder:238 green-recorder:256
 msgid "Green Recorder"
@@ -80,48 +80,48 @@ msgstr "Ein einfach zu bedienendes Programm zur Aufzeichnung des Desktops unter 
 
 #: green-recorder:267
 msgid "Select a Window"
-msgstr "اختيار نافذة"
+msgstr "Fenster auswählen"
 
 #: green-recorder:268
 msgid "Select an Area"
-msgstr "تحديد منطقة"
+msgstr "Bereich auswählen"
 
 #: green-recorder:269
 msgid "Advanced:"
-msgstr "متقدّم:"
+msgstr "Erweitert:"
 
 #: green-recorder:270
 msgid "Frames:"
-msgstr "الإطارات:"
+msgstr Bilder pro Sekunde:"
 
 #: green-recorder:271
 msgid "Delay:"
-msgstr "التأخير:"
+msgstr "Verzögerung:"
 
 #: green-recorder:272
 msgid "Audio Input:"
-msgstr "مدخل الصوت:"
+msgstr "Audioeingabe:"
 
 #: green-recorder:273
 msgid "Run Command After Recording:"
-msgstr "تشغيل أمر عند الانتهاء:"
+msgstr "Befehl nach Aufnahme ausführen:"
 
 #: green-recorder:274
 msgid "Default frames:"
-msgstr "عدد الإطارات الافتراضي:"
+msgstr "Standard Bilder pro Sekunde:"
 
 #: green-recorder:275
 msgid "Default delay:"
-msgstr "التأخير الافتراضي:"
+msgstr "Standardverzögerung:"
 
 #: green-recorder:276
 msgid "Default folder:"
-msgstr "المجلّد الافتراضي:"
+msgstr "Standardverzeichnis:"
 
 #: green-recorder:277
 msgid "Default Wayland pipeline:"
-msgstr "أنبوب وايلاند الافتراضي:"
+msgstr "Standard Wayland Transportleitung:"
 
 #: green-recorder:278
 msgid "Default command:"
-msgstr "تشغيل أمر عند الانتهاء:"
+msgstr "Standardbefehl:"
