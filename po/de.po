@@ -92,7 +92,7 @@ msgstr "Erweitert:"
 
 #: green-recorder:270
 msgid "Frames:"
-msgstr Bilder pro Sekunde:"
+msgstr "Bilder pro Sekunde:"
 
 #: green-recorder:271
 msgid "Delay:"
