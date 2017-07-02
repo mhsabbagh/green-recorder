@@ -20,7 +20,7 @@ By default, On Wayland only, Green Recorder uses the V8 encoder instead of the d
 
 This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.com/watch?v=kwCRBoOdJzU](https://www.youtube.com/watch?v=kwCRBoOdJzU)
 
-Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/greenproject
+Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/fossproject
 
 ### Localization
 
