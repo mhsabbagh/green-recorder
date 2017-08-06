@@ -516,7 +516,6 @@
     <property name="window_position">center</property>
     <property name="icon">/usr/share/pixmaps/green-recorder.png</property>
     <property name="gravity">center</property>
-    <signal name="activate-focus" handler="" swapped="no"/>
     <child>
       <object class="GtkBox" id="box3">
         <property name="visible">True</property>
