@@ -1,9 +1,9 @@
-%global owner green-project
+%global owner foss-project
 
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
-URL: https://green-project.github.io/green-recorder
-Version: 2.2
+URL: https://foss-project.com
+Version: 3.0
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -15,6 +15,9 @@ Requires: ffmpeg
 Requires: gawk
 Requires: libappindicator-gtk3
 Requires: python2-urllib3
+Requires: python-configparser
+Requires: pulseaudio
+
 
 %description
 A simple desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
@@ -36,6 +39,18 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0
+- GIF format support is now available!
+- Added ability to choose the audio input source.
+- Preferences window was added to allow setting default values. You can now also edit the default Wayland pipeline.
+- Reorganized the code and made it much clearer and simpler.
+- Reorganized the graphical user interface.
+- Added play button to easily enable playing the recorded video.
+- Fixed a bug in recording video only or audio only on Wayland.
+- Created a better ffmpeg detection on Xorg.
+- Introduced a better detection method for the running display server, adding possibility to support other servers in the future with no problem.
+- Various fixes and edits everywhere.
+
 * Tue Jun 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2
 - Added localization support.
 - Added Arabic language.

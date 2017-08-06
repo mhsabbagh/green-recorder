@@ -1,3 +1,18 @@
+green-recorder (3.0) zesty; urgency=low 
+
+  * GIF format support is now available!
+  * Added ability to choose the audio input source.
+  * Preferences window was added to allow setting default values. You can now also edit the default Wayland pipeline.
+  * Reorganized the code and made it much clearer and simpler.
+  * Reorganized the graphical user interface.
+  * Added play button to easily enable playing the recorded video.
+  * Fixed a bug in recording video only or audio only on Wayland.
+  * Created a better ffmpeg detection on Xorg.
+  * Introduced a better detection method for the running display server, adding possibility to support other servers in the future with no problem.
+  * Various fixes and edits everywhere.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 17:00 +0200
+
 green-recorder (2.2) zesty; urgency=low 
 
   * Added localization support.

@@ -19,11 +19,11 @@ locales = map(lambda i: ('share/'+i, [i+'/green-recorder.mo', ]), glob('locale/*
 data_files.extend(locales)
 
 setup(name = "green-recorder",
-      version = "2.2",
+      version = "3.0",
       description = "Record your desktop easily using a simple GUI",
-      author = "Green Project", 
+      author = "FOSS Project", 
       author_email = "mhsabbagh@outlook.com",
-      url = "https://green-project.github.io/green-recorder/",
+      url = "https://github.com/foss-project/green-recorder/",
       license='GPLv3',
       scripts=['green-recorder'],
       data_files=data_files)
