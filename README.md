@@ -6,9 +6,9 @@
 
 A simple yet functional desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. It supports recording audio and video on almost all Linux interfaces. Also, Green Recorder is the **first desktop program to support Wayland display server on GNOME session**.
 
-The following formats are currently supported: **mkv**, **avi**, **mp4**, **wmv** and **nut** (And only WebM for Wayland's GNOME session). You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
+The following formats are currently supported: **mkv**, **avi**, **mp4**, **wmv**, **gif** and **nut** (And only WebM for Wayland's GNOME session). You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
-Green recorder uses the default audio device you have to record. So if you want to change the audio input source, you just need to change it from the system-side (using **pavucontrol** for example).
+You can choose the audio input source you want from the list. You can also set the default values you want from the preferences window.
 
 ### How it works?
 
@@ -17,6 +17,8 @@ It uses the D-Bus API to connect to the built-in screencasting tool in GNOME She
 For Xorg, it uses ffmpeg only for both audio and video.
 
 By default, On Wayland only, Green Recorder uses the V8 encoder instead of the default V9 encoder in GNOME Shell because of the CPU & RAM consumption issue with V9. Which - now - should also give you better performance. On Xorg, each format uses its own default encoder.
+
+Also, for GIF format, Green Recorder first records the required video as a raw video. And then it generated the GIF image from the raw video. In this way, you'll get an optimized GIF image size which is at least 10x better than the normal ffmpeg recording.
 
 This is a recording sample for DOTA 2 running on Wayland: [https://www.youtube.com/watch?v=kwCRBoOdJzU](https://www.youtube.com/watch?v=kwCRBoOdJzU)
 

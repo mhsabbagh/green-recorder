@@ -17,7 +17,7 @@ Requires: libappindicator-gtk3
 Requires: python2-urllib3
 Requires: python-configparser
 Requires: pulseaudio
-
+Requires: ImageMagick
 
 %description
 A simple desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
