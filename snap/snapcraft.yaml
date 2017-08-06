@@ -1,0 +1,14 @@
+
+name: green-recorder # you probably want to 'snapcraft register <name>'
+version: '2.2' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A simple screen recorder for Linux desktop. Supports Wayland & Xorg 
+description: |
+   A simple screen recorder for Linux desktop. Supports Wayland & Xorg 
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  my-part:
+    # See 'snapcraft plugins'
+    plugin: nil
