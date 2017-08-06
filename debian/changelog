@@ -11,7 +11,7 @@ green-recorder (3.0) zesty; urgency=low
   * Introduced a better detection method for the running display server, adding possibility to support other servers in the future with no problem.
   * Various fixes and edits everywhere.
 
- -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 17:00 +0200
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 17:00:00 +0200
 
 green-recorder (2.2) zesty; urgency=low 
 
