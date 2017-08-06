@@ -63,7 +63,12 @@ bus = SessionBus()
 RecorderDisplay = subprocess.check_output("xdpyinfo | grep 'dimensions:'|awk '{print $2}'", shell=True)[:-1]
 DISPLAY = os.environ["DISPLAY"]
 
-DisplayServer = os.environ["XDG_SESSION_TYPE"]
+try:
+  DisplayServer = os.environ["XDG_SESSION_TYPE"]
+except:
+  DisplayServer = "xorg"
+  pass
+  
 print "You are recording on: " + str(DisplayServer)
 
 if "wayland" in DisplayServer:

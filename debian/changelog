@@ -1,3 +1,9 @@
+green-recorder (3.0.2) zesty; urgency=low 
+
+  * Fixed #46.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 20:02:00 +0200
+
 green-recorder (3.0.1.2) zesty; urgency=low 
 
   * Fixed a missing build dependency.
