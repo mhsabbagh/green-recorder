@@ -1,0 +1,13 @@
+
+name: green-recorder
+version: '3.0.1.2'
+summary: Simple screen recorder for Linux desktop. Supports Xorg & Wayland.
+description: |
+  Simple screen recorder for Linux desktop. Supports Xorg & Wayland.
+
+grade: stable
+confinement: strict
+
+parts:
+  my-part:
+    plugin: nil
