@@ -1,3 +1,9 @@
+green-recorder (3.0.1) zesty; urgency=low 
+
+  * Fixed a small warning in UI.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 18:00:00 +0200
+
 green-recorder (3.0) zesty; urgency=low 
 
   * GIF format support is now available!
