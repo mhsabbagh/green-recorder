@@ -1,16 +1,18 @@
 # Green Recorder
 
-![Green Recorder](https://media.giphy.com/media/3o6vXLgAWsH8qAcpDa/giphy.gif)
+![Green Recorder](http://i.imgur.com/re5NyaJ.png)
 
 ## About
-
-![Green Recorder](http://i.imgur.com/re5NyaJ.png)
 
 A simple desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. It supports recording audio and video on almost all Linux interfaces. Also, Green Recorder is the **first desktop program to support Wayland display server on GNOME session**.
 
 The following formats are currently supported: **mkv**, **avi**, **mp4**, **wmv**, **gif** and **nut** (And only WebM for Wayland's GNOME session). You can stop the recording process easily by right-clicking the icon and choosing "Stop Record". Or middle-clicking the recording icon in the notifications area (but doesn't work on all interfaces).
 
 You can choose the audio input source you want from the list. You can also set the default values you want from the preferences window. And a lot more.
+
+Here's a GIF image recorded with Green Recorder for Green Recorder:
+
+![Green Recorder](https://media.giphy.com/media/3o6vXLgAWsH8qAcpDa/giphy.gif)
 
 ### How it works?
 
