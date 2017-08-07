@@ -140,6 +140,8 @@ def RecordXorg():
       RecorderCommand.append("pulse")
       RecorderCommand.append("-i")
       RecorderCommand.append(audiosource.get_active_id())
+      RecorderCommand.append("-strict")
+      RecorderCommand.append("-2")
 
     # Pre format auditing.
     if formatchooser.get_active_id() == "gif":
@@ -156,7 +158,7 @@ def RecordXorg():
     global RecorderProcess
    
     RecorderProcess = subprocess.Popen(RecorderCommand)
-    subprocess.call(["sleep", "2"])
+    subprocess.call(["sleep", "3.5"])
     if os.path.isfile(RecorderAbsPathName) == False:
       window.show()
       sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
@@ -174,6 +176,8 @@ def RecordGnome():
       AudioRecording.append("pulse")
       AudioRecording.append("-i")
       AudioRecording.append(audiosource.get_active_id())
+      AudioRecording.append("-strict")
+      AudioRecording.append("-2")
       AudioRecording.append("/tmp/Green-recorder-tmp.mkv")
       AudioRecording.append("-y")
       
@@ -342,8 +346,8 @@ formatchooser.append("mkv", _("MKV (Matroska multimedia container format)"))
 formatchooser.append("avi", _("AVI (Audio Video Interleaved)"))
 formatchooser.append("mp4", _("MP4 (MPEG-4 Part 14)"))
 formatchooser.append("wmv", _("WMV (Windows Media Video)"))
-formatchooser.append("nut", _("NUT (NUT Recording Format)"))
 formatchooser.append("gif", _("GIF (Graphics Interchange Format)"))
+formatchooser.append("nut", _("NUT (NUT Recording Format)"))
 formatchooser.set_active(0)
 videocheck.set_label(_("Record Video"))
 audiocheck.set_label(_("Record Audio"))
@@ -407,8 +411,11 @@ playbutton.set_sensitive(False)
 
 # Audio input sources
 audiosource.append("default", _("Default PulseAudio Input Source"))
-audiosourcesnames = subprocess.check_output("pacmd list-sources | grep -e device.description", shell=True)
-audiosourcesids = subprocess.check_output("pacmd list-sources | grep -e device.string", shell=True)
+try:
+  audiosourcesnames = subprocess.check_output("pacmd list-sources | grep -e device.description", shell=True)
+  audiosourcesids = subprocess.check_output("pacmd list-sources | grep -e device.string", shell=True)
+except:
+  pass
 audiosourcesnames = audiosourcesnames.split("\n")[:-1]
 
 for i in range(len(audiosourcesnames)):

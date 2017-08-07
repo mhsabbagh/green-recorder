@@ -41,6 +41,9 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sun Aug 7 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
+- Fixed small issues.
+
 * Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.2
 - Fixed #46.
 
