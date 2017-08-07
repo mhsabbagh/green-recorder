@@ -1,8 +1,10 @@
 # Green Recorder
 
-![Green Recorder](http://i.imgur.com/re5NyaJ.png)
+![Green Recorder](https://media.giphy.com/media/3o6vXLgAWsH8qAcpDa/giphy.gif)
 
 ## About
+
+![Green Recorder](http://i.imgur.com/re5NyaJ.png)
 
 A simple desktop recorder for Linux systems. Built using Python, GTK+ 3 and ffmpeg. It supports recording audio and video on almost all Linux interfaces. Also, Green Recorder is the **first desktop program to support Wayland display server on GNOME session**.
 
