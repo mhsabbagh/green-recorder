@@ -14,6 +14,9 @@ Here's a GIF image recorded with Green Recorder for Green Recorder:
 
 ![Green Recorder](https://media.giphy.com/media/3o6vXLgAWsH8qAcpDa/giphy.gif)
 
+Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/fossproject
+
+
 ### How it works?
 
 It uses the D-Bus API to connect to the built-in screencasting tool in GNOME Shell. It uses this to record video. To record audio, it launches an instance of ffmpeg in the background. After the recording is finished, it merges the two files into the WebM file.
@@ -23,8 +26,6 @@ For Xorg, it uses ffmpeg only for both audio and video.
 By default, On Wayland only, Green Recorder uses the V8 encoder instead of the default V9 encoder in GNOME Shell because of the CPU & RAM consumption issue with V9. Which - now - should also give you better performance. On Xorg, each format uses its own default encoder.
 
 Also, for GIF format, Green Recorder first records the required video as a raw video. And then it generated the GIF image from the raw video. In this way, you'll get an optimized GIF image size which is at least 10x better than the normal ffmpeg recording.
-
-Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/fossproject
 
 ### Localization
 
