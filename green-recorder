@@ -38,7 +38,6 @@ else:
   config.set('Options', 'frames', '30')
   config.set('Options', 'delay', '0')
   config.set('Options', 'folder', "file://" + GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS))
-  config.set('Options', 'pipeline', 'vp8enc min_quantizer=13 max_quantizer=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux')
   config.set('Options', 'command', '')
   config.set('Options', 'filename', '')
   config.set('Options', 'videocheck', 'True')
@@ -81,7 +80,13 @@ else:
 def recorderindicator():
     # Create the app indicator widget.
     global indicator
-    indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    try:
+      s = subprocess.check_output("ps -cat|grep mate-panel", shell=True)
+    except:
+      indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
+      pass
+    else:
+      indicator = appindicator.Indicator.new("Green Recorder", 'green-recorder', appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
     indicator.set_menu(indicator_menu())
     # Make middle-click stops the recording process.
@@ -169,7 +174,12 @@ def RecordXorg():
 
 def RecordGnome():
     AudioRecording = []
-
+   
+    global RecorderPipeline
+    
+    if formatchooser.get_active_id() == "webm":
+      RecorderPipeline = "vp8enc min_quantizer=10 max_quantizer=50 cq_level=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux"
+      
     if audiocheck.get_active() == True:
       AudioRecording.append("ffmpeg")
       AudioRecording.append("-f")
@@ -258,6 +268,9 @@ def stoprecording(self):
     elif "gnomewayland" in DisplayServer:
       subprocess.call(["sleep", "1"])
       
+      global RecorderPipeline
+      del RecorderPipeline
+      
       try:
         GNOMEScreencast.StopScreencast()
         AudioProcess.terminate()
@@ -311,7 +324,6 @@ delayvalue = builder.get_object("spinbutton2")
 frameslabel = builder.get_object("frameslabel")
 delaylabel = builder.get_object("delaylabel")
 folderlabel = builder.get_object("folderlabel")
-pipelinelabel = builder.get_object("pipelinelabel")
 commandlabel = builder.get_object("commandlabel")
 audiosourcelabel = builder.get_object("audiosourcelabel")
 framespref = builder.get_object("spinbutton3")
@@ -320,7 +332,6 @@ delayadjustment = builder.get_object("adjustment1")
 framesadjustment = builder.get_object("adjustment2")
 delayprefadjustment = builder.get_object("adjustment3")
 framesprefadjustment = builder.get_object("adjustment4")
-pipelineentry = builder.get_object("gtkentry1")
 commandentry2 = builder.get_object("gtkentry2")
 playbutton = builder.get_object("playbutton")
 prefrecvidlabel = builder.get_object("label10")
@@ -374,7 +385,6 @@ commandtext.set_label(_("Run Command After Recording:"))
 frameslabel.set_label(_("Default frames:"))
 delaylabel.set_label(_("Default delay:"))
 folderlabel.set_label(_("Default folder:"))
-pipelinelabel.set_label(_("Default pipeline:"))
 commandlabel.set_label(_("Default command:"))
 audiosourcelabel.set_label(_("Audio Input Source:"))
 prefrecvidlabel.set_label(_("Record Video"))
@@ -392,7 +402,6 @@ framesprefadjustment.set_value(int(config.get('Options', 'frames')))
 FolderPath = config.get('Options', 'folder')
 folderchooser.set_uri(urllib.unquote(FolderPath))
 folderchooser2.set_uri(urllib.unquote(FolderPath))
-pipelineentry.set_text(config.get('Options', 'pipeline'))
 commandentry.set_text(config.get('Options', 'command'))
 commandentry2.set_text(config.get('Options', 'command'))
 videoswitch.set_state(checkbool(config.get('Options', 'videocheck')))
@@ -406,8 +415,6 @@ videocheck.set_active(checkbool(config.get('Options', 'videocheck')))
 audiocheck.set_active(checkbool(config.get('Options', 'audiocheck')))
 mousecheck.set_active(checkbool(config.get('Options', 'mousecheck')))
 followmousecheck.set_active(checkbool(config.get('Options', 'followmousecheck')))
-global RecorderPipeline
-RecorderPipeline = pipelineentry.get_text()
 
 playbutton.set_sensitive(False)
 
@@ -433,7 +440,7 @@ if "wayland" in DisplayServer:
   windowgrabbutton.set_sensitive(False)
   followmousecheck.set_sensitive(False)
   formatchooser.remove_all()
-  # Actually, other formats can also be supported. However, we'll need format-specific pipelines to be passed for the screencasting service. Those will be GStreamer Pipelines.
+  
   formatchooser.append("webm", "WebM (The Open WebM Format)")
   formatchooser.set_active(0)
 
@@ -510,12 +517,6 @@ class Handler:
           
     def folderchosen(self, GtkFileChooserButton):
         config.set('Options', 'folder', urllib.unquote(folderchooser2.get_uri()))
-        global confFile
-        with open(confFile, 'w+') as newconfFile:
-          config.write(newconfFile)
-          
-    def pipelinechanged(self, GtkEntry):
-        config.set('Options', 'pipeline', pipelineentry.get_text())
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)

@@ -4,7 +4,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://foss-project.com
-Version: 3.0.3
+Version: 3.0.4
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -41,6 +41,13 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sun Aug 8 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.4
+- Fixed small issues evreywhere.
+- Removed Wayland pipeline editing option.
+- Reworked UI.
+- Updated translation template.
+- Fixed applet on MATE.
+
 * Sun Aug 7 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
 - Fixed small issues.
 

@@ -1,3 +1,13 @@
+green-recorder (3.0.4) zesty; urgency=low 
+
+  * Fixed small issues evreywhere.
+  * Removed Wayland pipeline editing option.
+  * Reworked UI.
+  * Updated translation template.
+  * Fixed applet on MATE.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 8 Aug 2017 07:02:00 +0200
+
 green-recorder (3.0.3) zesty; urgency=low 
 
   * Fixed small issues evreywhere.
