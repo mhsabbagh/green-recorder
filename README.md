@@ -1,6 +1,6 @@
 # Green Recorder
 
-![Green Recorder](http://i.imgur.com/re5NyaJ.png)
+![Green Recorder](http://i.imgur.com/EAZefUa.png)
 
 ## About
 
