@@ -293,6 +293,10 @@ def stoprecording(self):
     CommandToRun = commandentry.get_text()
     subprocess.Popen([CommandToRun], shell=True)
 
+def hide_on_delete(widget, event):
+    widget.hide()
+    return True
+    
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
 builder.add_from_file("/usr/share/green-recorder/ui.glade")
@@ -393,6 +397,8 @@ prefrecmouslabel.set_label(_("Record Mouse"))
 preffollowmouselabel.set_label(_("Follow Mouse"))
 preffilenamelabel.set_label(_("Default filename:"))
 youcanlabel.set_label(_("If you want, you can:"))
+preferenceswindow.connect("delete-event", hide_on_delete)
+areachooser.connect("delete-event", hide_on_delete)
 
 # Get defaults from configuration file.
 delayadjustment.set_value(int(config.get('Options', 'delay')))
