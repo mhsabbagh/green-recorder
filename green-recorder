@@ -186,8 +186,6 @@ def RecordGnome():
       AudioRecording.append("pulse")
       AudioRecording.append("-i")
       AudioRecording.append(audiosource.get_active_id())
-      AudioRecording.append("-strict")
-      AudioRecording.append("-2")
       AudioRecording.append("/tmp/Green-recorder-tmp.mkv")
       AudioRecording.append("-y")
       
