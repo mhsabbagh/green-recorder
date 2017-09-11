@@ -210,13 +210,39 @@ def checkbool(s):
   return s.lower() in ("True", "true", "1")
 
 def record():
+    global RecorderFullPathName # grab the path
+    RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
+    #remove file:// in the pathname and set it too abs_path
+    abs_path=RecorderFullPathName.replace("file://",'')
+    filename=filenameentry.get_text()
+    print(abs_path)
+    if os.path.exists(abs_path) and filename is not "":
+        dialog = Gtk.Dialog(
+            "File already exists!",
+            None,
+            Gtk.DialogFlags.MODAL,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OK, Gtk.ResponseType.OK,)
+            )
+        dialog.set_transient_for(window)
+        dialog.set_default_size(150,100)
+        label = Gtk.Label("Would you like to overwrite this file?")
+        box = dialog.get_content_area()
+        box.add(label)
+        dialog.show_all()
+        response = dialog.run()
+        dialog.destroy()
+        if response == Gtk.ResponseType.OK:
+            dialog.destroy()
+        elif response == Gtk.ResponseType.CANCEL:
+            return
 
     # Hide the window. Used flush() to avoid the interface waiting.
     window.hide()
     Gdk.flush()
     
     # Get the given values from the input fields.
-    global RecorderFullPathName
+    #global RecorderFullPathName
     global RecorderAbsPathName
     global RecorderDelay
     global RecorderFrames
@@ -249,9 +275,10 @@ def stoprecording(self):
     
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
     Gtk.main_quit()
-    
     window.show()
     playbutton.set_sensitive(True)
+    filenameentry.set_placeholder_text(_("File Name (Will be overwritten).."))
+    
     
     try:
       global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
