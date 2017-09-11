@@ -1,3 +1,92 @@
+green-recorder (3.0.4) zesty; urgency=low 
+
+  * Fixed small issues evreywhere.
+  * Removed Wayland pipeline editing option.
+  * Reworked UI.
+  * Updated translation template.
+  * Fixed applet on MATE.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 8 Aug 2017 07:02:00 +0200
+
+green-recorder (3.0.3) zesty; urgency=low 
+
+  * Fixed small issues evreywhere.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 7 Aug 2017 07:02:00 +0200
+
+green-recorder (3.0.2) zesty; urgency=low 
+
+  * Fixed #46.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 20:02:00 +0200
+
+green-recorder (3.0.1.2) zesty; urgency=low 
+
+  * Fixed a missing build dependency.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 18:02:00 +0200
+
+green-recorder (3.0.1.1) zesty; urgency=low 
+
+  * Fixed a small warning in UI.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 18:01:00 +0200
+
+green-recorder (3.0.1) zesty; urgency=low 
+
+  * Fixed a small warning in UI.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 18:00:00 +0200
+
+green-recorder (3.0) zesty; urgency=low 
+
+  * GIF format support is now available!
+  * Added ability to choose the audio input source.
+  * Preferences window was added to allow setting default values. You can now also edit the default Wayland pipeline.
+  * Reorganized the code and made it much clearer and simpler.
+  * Reorganized the graphical user interface.
+  * Added play button to easily enable playing the recorded video.
+  * Fixed a bug in recording video only or audio only on Wayland.
+  * Created a better ffmpeg detection on Xorg.
+  * Introduced a better detection method for the running display server, adding possibility to support other servers in the future with no problem.
+  * Various fixes and edits everywhere.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sun, 6 Aug 2017 17:00:00 +0200
+
+green-recorder (2.2) zesty; urgency=low 
+
+  * Added localization support.
+  * Added Arabic language.
+  * Changed window opacity to 1.00
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Tue, 6 Jun 2017 00:33:33 +0200
+
+green-recorder (2.1.5) zesty; urgency=low 
+
+  * Another try to fix #25.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sat, 25 Mar 2017 17:33:33 +0200
+
+green-recorder (2.1.4.1) zesty; urgency=low 
+
+  * Fixed issues #24 and #25.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sat, 25 Mar 2017 16:33:33 +0200
+
+green-recorder (2.1.4) zesty; urgency=low 
+
+  * Fixed issue #22 for non-English folder names.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Sat, 25 Mar 2017 16:33:33 +0200
+
+green-recorder (2.1) zesty; urgency=low 
+
+  * Changed the border of the record button.
+  * The recorder now uses default timestamp if name not provided.
+  * Display a warning when GDK_BACKEND=x11 is not defined on Wayland which may cause the program not to work.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Wed, 8 Mar 2017 19:33:33 +0200
+
 green-recorder (2.0) zesty; urgency=low 
 
   * Added Wayland Support (GNOME Session).

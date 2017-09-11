@@ -1,0 +1,143 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-06 19:05+0300\n"
+"PO-Revision-Date: 2017-08-06 19:08+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Language: ar\n"
+
+#: green-recorder:328 green-recorder:348
+msgid "Green Recorder"
+msgstr "المسجّل الأخضر"
+
+#: green-recorder:329
+msgid "AreaChooser"
+msgstr "محدد المنطقة"
+
+#: green-recorder:330
+msgid "Green Recorder Preferences"
+msgstr "تفضيلات المسجّل الأخضر"
+
+#: green-recorder:332 green-recorder:335
+msgid "File Name (Will be overwritten).."
+msgstr "اسم الملف (سيتم الكتابة فوقه)"
+
+#: green-recorder:333 green-recorder:334
+msgid "Enter your command here.."
+msgstr "قم بإدخال الأمر هنا"
+
+#: green-recorder:336
+msgid "MKV (Matroska multimedia container format)"
+msgstr "MKV (Matroska multimedia container format)"
+
+#: green-recorder:337
+msgid "AVI (Audio Video Interleaved)"
+msgstr "AVI (Audio Video Interleaved)"
+
+#: green-recorder:338
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr "MP4 (MPEG-4 Part 14)"
+
+#: green-recorder:339
+msgid "WMV (Windows Media Video)"
+msgstr "WMV (Windows Media Video)"
+
+#: green-recorder:340
+msgid "NUT (NUT Recording Format)"
+msgstr "NUT (NUT Recording Format)"
+
+#: green-recorder:341
+msgid "GIF (Graphics Interchange Format)"
+msgstr "GIF (Graphics Interchange Format)"
+
+#: green-recorder:343 green-recorder:370
+msgid "Record Video"
+msgstr "تسجيل الفيديو"
+
+#: green-recorder:344 green-recorder:371
+msgid "Record Audio"
+msgstr "تسجيل الصوت"
+
+#: green-recorder:345
+msgid "Show Mouse"
+msgstr "إظهار الفأرة"
+
+#: green-recorder:346 green-recorder:373
+msgid "Follow Mouse"
+msgstr "متابعة الفأرة"
+
+#: green-recorder:353
+msgid "A simple screen recorder for Linux desktop. Supports Wayland & Xorg."
+msgstr "مسجّل شاشة بسيط لسطح مكتب لينكس، يدعم إكس ووايلاند."
+
+#: green-recorder:359
+msgid "Select a Window"
+msgstr "اختر نافذة"
+
+#: green-recorder:360
+msgid "Select an Area"
+msgstr "حدد منطقة"
+
+#: green-recorder:361
+msgid "Frames:"
+msgstr "الإطارات:"
+
+#: green-recorder:362
+msgid "Delay:"
+msgstr "التأخير:"
+
+#: green-recorder:363
+msgid "Run Command After Recording:"
+msgstr "تشغيل أمر عند الانتهاء:"
+
+#: green-recorder:364
+msgid "Default frames:"
+msgstr "عدد الإطارات الافتراضي:"
+
+#: green-recorder:365
+msgid "Default delay:"
+msgstr "التأخير الافتراضي:"
+
+#: green-recorder:366
+msgid "Default folder:"
+msgstr "المجلّد الافتراضي:"
+
+#: green-recorder:367
+msgid "Default pipeline:"
+msgstr "أنبوب وايلاند الافتراضي:"
+
+#: green-recorder:368
+msgid "Default command:"
+msgstr "تشغيل أمر عند الانتهاء:"
+
+#: green-recorder:369
+msgid "Audio Input Source:"
+msgstr "مدخل الصوت:"
+
+#: green-recorder:372
+msgid "Record Mouse"
+msgstr "تسجيل الفأرة"
+
+#: green-recorder:374
+msgid "Default filename:"
+msgstr "اسم الملفّ الافتراضي:"
+
+#: green-recorder:404
+msgid "Default PulseAudio Input Source"
+msgstr "مصدر صوت PulseAudio الافتراضي"
+
+#: green-recorder:458
+msgid "Area Chooser"
+msgstr "محدد المنطقة"

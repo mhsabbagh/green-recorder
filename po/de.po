@@ -1,0 +1,127 @@
+# Green Recorder.
+# Copyright (C), 2017.
+# This file is distributed under the same license as the Green Recorder package.
+# FIRST AUTHOR <robert@orzanna.de>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-12 15:01+0300\n"
+"PO-Revision-Date: 2017-06-12 15:03+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"Last-Translator: Robert Orzanna <robert@orzanna.de>"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"Language: de\n"
+
+#: green-recorder:238 green-recorder:256
+msgid "Green Recorder"
+msgstr "Green Recorder"
+
+#: green-recorder:239
+msgid "AreaChooser"
+msgstr "Bereich auswählen"
+
+#: green-recorder:240
+msgid "Green Recorder Preferences"
+msgstr "Einstellungen"
+
+#: green-recorder:242
+msgid "File Name (Will be overwritten).."
+msgstr "Dateiname (wird überschrieben)..."
+
+#: green-recorder:243 green-recorder:244
+msgid "Enter your command here.."
+msgstr "Auszuführenden Befehl hier eingeben..."
+
+#: green-recorder:245
+msgid "MKV (Matroska multimedia container format)"
+msgstr "MKV (Matroska Multimedia Container Format)"
+
+#: green-recorder:246
+msgid "AVI (Audio Video Interleaved)"
+msgstr "AVI (Audio Video Interleaved)"
+
+#: green-recorder:247
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr "MP4 (MPEG-4 Part 14)"
+
+#: green-recorder:248
+msgid "WMV (Windows Media Video)"
+msgstr "WMV (Windows Media Video)"
+
+#: green-recorder:249
+msgid "NUT (NUT Recording Format)"
+msgstr "NUT (NUT Recording Format)"
+
+#: green-recorder:251
+msgid "Record Video"
+msgstr "Video aufzeichnen"
+
+#: green-recorder:252
+msgid "Record Microphone"
+msgstr "Mikrofon aufzeichnen"
+
+#: green-recorder:253
+msgid "Show Mouse"
+msgstr "Mauszeiger aufzeichnen"
+
+#: green-recorder:254
+msgid "Follow Mouse"
+msgstr "Mauszeiger folgen"
+
+#: green-recorder:261
+msgid "An easy to use desktop recorder for Xorg and Wayland."
+msgstr "Ein einfach zu bedienendes Programm zur Aufzeichnung des Desktops unter Xorg und Wayland."
+
+#: green-recorder:267
+msgid "Select a Window"
+msgstr "Fenster auswählen"
+
+#: green-recorder:268
+msgid "Select an Area"
+msgstr "Bereich auswählen"
+
+#: green-recorder:269
+msgid "Advanced:"
+msgstr "Erweitert:"
+
+#: green-recorder:270
+msgid "Frames:"
+msgstr "Bilder pro Sekunde:"
+
+#: green-recorder:271
+msgid "Delay:"
+msgstr "Verzögerung:"
+
+#: green-recorder:272
+msgid "Audio Input:"
+msgstr "Audioeingabe:"
+
+#: green-recorder:273
+msgid "Run Command After Recording:"
+msgstr "Befehl nach Aufnahme ausführen:"
+
+#: green-recorder:274
+msgid "Default frames:"
+msgstr "Standard Bilder pro Sekunde:"
+
+#: green-recorder:275
+msgid "Default delay:"
+msgstr "Standardverzögerung:"
+
+#: green-recorder:276
+msgid "Default folder:"
+msgstr "Standardverzeichnis:"
+
+#: green-recorder:277
+msgid "Default Wayland pipeline:"
+msgstr "Standard Wayland Transportleitung:"
+
+#: green-recorder:278
+msgid "Default command:"
+msgstr "Standardbefehl:"
