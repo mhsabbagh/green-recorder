@@ -97,6 +97,6 @@ The source code is available to download via: [https://github.com/green-project/
 
 Make sure you are running it with Python 2. It doesn't work currently with Python 3.
     
-## Contact
+## License
 
-The program is released under GPL 3. For contact: mhsabbagh[at]outlook.com.
+The program is released under GPL 3.
