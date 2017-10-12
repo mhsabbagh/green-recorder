@@ -4,9 +4,9 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://foss-project.com
-Version: 3.0.4
+Version: 3.0.5
 Release: 1%{?dist}
-Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
+Source: green-recorder-3.0.5.tar.gz
 License: GPLv3
 BuildArch: noarch
 BuildRequires: python2-devel
@@ -41,6 +41,10 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Thu Oct 12 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.5
+- Fixed small issues evreywhere.
+- Restructured UI.
+
 * Sun Aug 8 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.4
 - Fixed small issues evreywhere.
 - Removed Wayland pipeline editing option.
@@ -48,19 +52,19 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 - Updated translation template.
 - Fixed applet on MATE.
 
-* Sun Aug 7 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
+* Sat Aug 7 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
 - Fixed small issues.
 
-* Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.2
+* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.2
 - Fixed #46.
 
-* Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1.1
+* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1.1
 - A small fix for UI warning.
 
-* Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1
+* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1
 - A small fix for UI warning.
 
-* Sun Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0
+* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0
 - GIF format support is now available!
 - Added ability to choose the audio input source.
 - Preferences window was added to allow setting default values. You can now also edit the default Wayland pipeline.

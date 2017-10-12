@@ -212,7 +212,7 @@ def checkbool(s):
 def record():
     global RecorderFullPathName # grab the path
     RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filenameentry.get_text() + '.' + formatchooser.get_active_id())
-    #remove file:// in the pathname and set it too abs_path
+
     abs_path=RecorderFullPathName.replace("file://",'')
     filename=filenameentry.get_text()
     print(abs_path)
@@ -267,7 +267,7 @@ def record():
       RecordGnome()
       
     else:
-      print("Sorry Jim, looks like you are using something we don't support")
+      sendnotification("Sorry Jim, looks like you are using something we don't support", 3)
       window.show()
       
 def stoprecording(self):
@@ -277,8 +277,7 @@ def stoprecording(self):
     Gtk.main_quit()
     window.show()
     playbutton.set_sensitive(True)
-    filenameentry.set_placeholder_text(_("File Name (Will be overwritten).."))
-    
+    filenameentry.set_placeholder_text(_("File Name.."))
     
     try:
       global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
@@ -368,7 +367,6 @@ prefrecaudlabel = builder.get_object("label11")
 prefrecmouslabel = builder.get_object("label12")
 preffollowmouselabel = builder.get_object("label13")
 preffilenamelabel = builder.get_object("label14")
-youcanlabel = builder.get_object("label15")
 videoswitch = builder.get_object("videoswitch")
 audioswitch = builder.get_object("audioswitch")
 mouseswitch = builder.get_object("mouseswitch")
@@ -379,7 +377,7 @@ window.set_title(_("Green Recorder"))
 areachooser.set_name(_('AreaChooser'))
 preferenceswindow.set_title(_('Green Recorder Preferences'))
 window.connect("delete-event", Gtk.main_quit)
-filenameentry.set_placeholder_text(_("File Name (Will be overwritten).."))
+filenameentry.set_placeholder_text(_("File Name.."))
 commandentry.set_placeholder_text(_("Enter your command here.."))
 commandentry2.set_placeholder_text(_("Enter your command here.."))
 preffilename.set_placeholder_text(_("File Name (Will be overwritten).."))
@@ -421,7 +419,6 @@ prefrecaudlabel.set_label(_("Record Audio"))
 prefrecmouslabel.set_label(_("Record Mouse"))
 preffollowmouselabel.set_label(_("Follow Mouse"))
 preffilenamelabel.set_label(_("Default filename:"))
-youcanlabel.set_label(_("If you want, you can:"))
 preferenceswindow.connect("delete-event", hide_on_delete)
 areachooser.connect("delete-event", hide_on_delete)
 
