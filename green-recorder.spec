@@ -6,7 +6,7 @@ Summary: A simple yet functional desktop recorder for Linux systems. Supports bo
 URL: https://foss-project.com
 Version: 3.0.5
 Release: 1%{?dist}
-Source: green-recorder-3.0.5.tar.gz
+Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
 BuildArch: noarch
 BuildRequires: python2-devel
