@@ -34,10 +34,15 @@ if not os.path.exists(confDir):
 if os.path.isfile(confFile):
   config.read(confFile)
 else:
+
+  VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)
+  if VideosFolder is None:
+    VideosFolder = os.environ['HOME']
+    
   config.add_section('Options')
   config.set('Options', 'frames', '30')
   config.set('Options', 'delay', '0')
-  config.set('Options', 'folder', "file://" + GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS))
+  config.set('Options', 'folder', "file://" + VideosFolder)
   config.set('Options', 'command', '')
   config.set('Options', 'filename', '')
   config.set('Options', 'videocheck', 'True')
