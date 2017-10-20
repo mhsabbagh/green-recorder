@@ -1,3 +1,9 @@
+green-recorder (3.0.6) zesty; urgency=low 
+
+  * Fixed #73.
+
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Fri, 20 Oct 2017 09:02:00 +0200
+
 green-recorder (3.0.5) zesty; urgency=low 
 
   * Fixed small issues evreywhere.
