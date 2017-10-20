@@ -6,7 +6,7 @@ Summary: A simple yet functional desktop recorder for Linux systems. Supports bo
 URL: https://foss-project.com
 Version: 3.0.6
 Release: 1%{?dist}
-Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
+Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{version}.tar.gz
 License: GPLv3
 BuildArch: noarch
 BuildRequires: python2-devel
