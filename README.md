@@ -2,7 +2,7 @@
 
 # Green Recorder
 
-![Green Recorder](https://i.imgur.com/mg96c5Q.png)
+![Green Recorder](https://i.imgur.com/bZJtdIs.png)
 
 ## About
 
