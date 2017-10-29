@@ -17,9 +17,8 @@
 import gi
 
 gi.require_version('Gtk','3.0')
-gi.require_version('AppIndicator3', '0.1')
 
-from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
+from gi.repository import Gtk, Gdk, GLib
 from pydbus import SessionBus
 import subprocess, signal, threading, datetime, urllib, gettext, locale, os, ConfigParser
 
@@ -81,33 +80,6 @@ if "wayland" in DisplayServer:
   GNOMEScreencast = bus.get('org.gnome.Shell.Screencast', '/org/gnome/Shell/Screencast')
 else:
   DisplayServer = "xorg"
-  
-def recorderindicator():
-    # Create the app indicator widget.
-    global indicator
-    try:
-      s = subprocess.check_output("ps -cat|grep mate-panel", shell=True)
-    except:
-      indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
-      pass
-    else:
-      indicator = appindicator.Indicator.new("Green Recorder", 'green-recorder', appindicator.IndicatorCategory.APPLICATION_STATUS)
-    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
-    indicator.set_menu(indicator_menu())
-    # Make middle-click stops the recording process.
-    indicator.set_secondary_activate_target(stoprecordingbutton)
-    Gtk.main()
-    
-def indicator_menu():
-    # Here menu items are defined and built. Used global on stoprecordingbutton to pass it as a Gtk.Widget to the indicator to be able to stop recording using middle click on the icon directly.
-    menu = Gtk.Menu()
-    global stoprecordingbutton
-    stoprecordingbutton = Gtk.MenuItem('Stop Recording')
-    stoprecordingbutton.connect('activate', stoprecording)
-    menu.append(stoprecordingbutton)
-    menu.show_all()
-    return menu
-    
     
 def sendnotification(text, time):
     notifications = bus.get('.Notifications')
@@ -173,7 +145,7 @@ def RecordXorg():
       window.show()
       sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
     else:
-      recorderindicator()
+      sendnotification("Recording has started!", 1)
     
     
 
@@ -207,9 +179,7 @@ def RecordGnome():
       else:
         GNOMEScreencast.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
     
-    t = threading.RLock()
-    with t:
-      recorderindicator()
+    sendnotification("Recording has started!", 1)
       
 def checkbool(s):
   return s.lower() in ("True", "true", "1")
@@ -241,10 +211,6 @@ def record():
             dialog.destroy()
         elif response == Gtk.ResponseType.CANCEL:
             return
-
-    # Hide the window. Used flush() to avoid the interface waiting.
-    window.hide()
-    Gdk.flush()
     
     # Get the given values from the input fields.
     #global RecorderFullPathName
@@ -263,6 +229,7 @@ def record():
     RecorderAbsPathName = RecorderFullPathName.replace("file://", "")
     
     subprocess.call(["sleep", RecorderDelay])
+    stopbutton.set_sensitive(True)
     
     if "xorg" in DisplayServer:
       RecordXorg()
@@ -274,53 +241,6 @@ def record():
     else:
       sendnotification("Sorry Jim, looks like you are using something we don't support", 3)
       window.show()
-      
-def stoprecording(self):
-    subprocess.call(["sleep", "1"]) # Wait ffmpeg.
-    
-    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
-    Gtk.main_quit()
-    window.show()
-    playbutton.set_sensitive(True)
-    filenameentry.set_placeholder_text(_("File Name.."))
-    
-    try:
-      global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
-      del areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
-    except NameError:
-      pass
-    
-    if "xorg" in DisplayServer:
-      subprocess.call(["sleep", "1"])
-      RecorderProcess.terminate()
-      
-    elif "gnomewayland" in DisplayServer:
-      subprocess.call(["sleep", "1"])
-      
-      global RecorderPipeline
-      del RecorderPipeline
-      
-      try:
-        GNOMEScreencast.StopScreencast()
-        AudioProcess.terminate()
-      except:
-        pass # I know.
-      
-      if videocheck.get_active() == True and audiocheck.get_active() == True:
-        m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
-        k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderAbsPathName])
-      elif videocheck.get_active() == False and audiocheck.get_active() == True:
-        k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])
-        
-    if formatchooser.get_active_id() == "gif":
-      sendnotification("Your GIF image is currently being processed, this may take a while according to your PC's resources.", 5)
-      
-      subprocess.call(["mv", RecorderAbsPathName, RecorderAbsPathName+".tmp"])
-      subprocess.call(["convert", "-layers", "Optimize", RecorderAbsPathName+".tmp", RecorderAbsPathName])
-      subprocess.call(["rm", RecorderAbsPathName+".tmp"])
-      
-    CommandToRun = commandentry.get_text()
-    subprocess.Popen([CommandToRun], shell=True)
 
 def hide_on_delete(widget, event):
     widget.hide()
@@ -342,7 +262,8 @@ commandentry = builder.get_object("entry2")
 preffilename = builder.get_object("entry3")
 formatchooser = builder.get_object("comboboxtext1")
 audiosource = builder.get_object("audiosource")
-recordbutton = builder.get_object("button1")
+recordbutton = builder.get_object("recordbutton")
+stopbutton = builder.get_object("stopbutton")
 windowgrabbutton = builder.get_object("button4")
 areagrabbutton = builder.get_object("button5")
 videocheck = builder.get_object("checkbutton1")
@@ -399,7 +320,7 @@ mousecheck.set_label(_("Show Mouse"))
 followmousecheck.set_label(_("Follow Mouse"))
 aboutdialog.set_transient_for(window)
 aboutdialog.set_program_name(_("Green Recorder"))
-aboutdialog.set_version("3.0")
+aboutdialog.set_version("3.1")
 aboutdialog.set_copyright("© 2017 FOSS Project")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
@@ -449,6 +370,7 @@ audiocheck.set_active(checkbool(config.get('Options', 'audiocheck')))
 mousecheck.set_active(checkbool(config.get('Options', 'mousecheck')))
 followmousecheck.set_active(checkbool(config.get('Options', 'followmousecheck')))
 
+stopbutton.set_sensitive(False)
 playbutton.set_sensitive(False)
 
 # Audio input sources
@@ -511,6 +433,52 @@ class Handler:
     def selectarea(self, GtkButton):
         areachooser.set_title(_("Area Chooser"))
         areachooser.show()
+        
+    def stoprecording(self, GtkButton):
+      subprocess.call(["sleep", "1"]) # Wait ffmpeg.
+
+      window.show()
+      
+      playbutton.set_sensitive(True)
+      filenameentry.set_placeholder_text(_("File Name.."))
+      
+      try:
+        global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
+        del areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
+      except NameError:
+        pass
+      
+      if "xorg" in DisplayServer:
+        subprocess.call(["sleep", "1"])
+        RecorderProcess.terminate()
+        
+      elif "gnomewayland" in DisplayServer:
+        subprocess.call(["sleep", "1"])
+        
+        global RecorderPipeline
+        del RecorderPipeline
+        
+        try:
+          GNOMEScreencast.StopScreencast()
+          AudioProcess.terminate()
+        except:
+          pass # I know.
+        
+        if videocheck.get_active() == True and audiocheck.get_active() == True:
+          m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
+          k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderAbsPathName])
+        elif videocheck.get_active() == False and audiocheck.get_active() == True:
+          k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])
+          
+      if formatchooser.get_active_id() == "gif":
+        sendnotification("Your GIF image is currently being processed, this may take a while according to your PC's resources.", 5)
+        
+        subprocess.call(["mv", RecorderAbsPathName, RecorderAbsPathName+".tmp"])
+        subprocess.call(["convert", "-layers", "Optimize", RecorderAbsPathName+".tmp", RecorderAbsPathName])
+        subprocess.call(["rm", RecorderAbsPathName+".tmp"])
+        
+      CommandToRun = commandentry.get_text()
+      subprocess.Popen([CommandToRun], shell=True)
         
     def preferencesbuttonclicked(self, GtkButton):
         preferenceswindow.show()
