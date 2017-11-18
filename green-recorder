@@ -451,6 +451,7 @@ class Handler:
       if "xorg" in DisplayServer:
         subprocess.call(["sleep", "1"])
         RecorderProcess.terminate()
+        sendnotification("Recording has stopped!", 3)
         
       elif "gnomewayland" in DisplayServer:
         subprocess.call(["sleep", "1"])
@@ -463,6 +464,8 @@ class Handler:
           AudioProcess.terminate()
         except:
           pass # I know.
+        
+        sendnotification("Recording has stopped!", 3)
         
         if videocheck.get_active() == True and audiocheck.get_active() == True:
           m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
