@@ -5,6 +5,7 @@ GenericName=Green Recorder
 GenericName[ar]=المسجّل الأخضر
 Comment=Record your desktop easily using a simple GUI
 Comment[ar]=سجّل سطح مكتبم باستخدام واجهة رسومية سهلة
+Comment[fr]=Enregistrez votre bureau facilement avec une interface simple
 Exec=env GDK_BACKEND=x11 green-recorder
 Terminal=false
 Type=Application
