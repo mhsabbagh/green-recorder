@@ -1,0 +1,147 @@
+# Green Recorder
+# Copyright (C) 2017, FOSS Project
+# This file is distributed under the same license as the Green Recorder package.
+# M.Hanny Sabbagh <mhsabbagh@outlook.com>, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-08 10:53+0300\n"
+"PO-Revision-Date: 2017-12-31 15:58+0100\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"Last-Translator: SharkEzz\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr_FR\n"
+
+#: green-recorder:338 green-recorder:358
+msgid "Green Recorder"
+msgstr "Green Recorder"
+
+#: green-recorder:339
+msgid "AreaChooser"
+msgstr "Sélecteur de zone"
+
+#: green-recorder:340
+msgid "Green Recorder Preferences"
+msgstr "Préférences de Green Recorder"
+
+#: green-recorder:342 green-recorder:345
+msgid "File Name (Will be overwritten).."
+msgstr "Nom du fichier.."
+
+#: green-recorder:343 green-recorder:344
+msgid "Enter your command here.."
+msgstr "Entrez la commande ici.."
+
+#: green-recorder:346
+msgid "MKV (Matroska multimedia container format)"
+msgstr "MKV (Matroska multimedia container format)"
+
+#: green-recorder:347
+msgid "AVI (Audio Video Interleaved)"
+msgstr "AVI (Audio Video Interleaved)"
+
+#: green-recorder:348
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr "MP4 (MPEG-4 Part 14)"
+
+#: green-recorder:349
+msgid "WMV (Windows Media Video)"
+msgstr "WMV (Windows Media Video)"
+
+#: green-recorder:350
+msgid "GIF (Graphics Interchange Format)"
+msgstr "GIF (Graphics Interchange Format)"
+
+#: green-recorder:351
+msgid "NUT (NUT Recording Format)"
+msgstr "NUT (NUT Recording Format)"
+
+#: green-recorder:353 green-recorder:380
+msgid "Record Video"
+msgstr "Enregistrer une vidéo"
+
+#: green-recorder:354 green-recorder:381
+msgid "Record Audio"
+msgstr "Enregistrer l'audio"
+
+#: green-recorder:355
+msgid "Show Mouse"
+msgstr "Montrer la souris"
+
+#: green-recorder:356 green-recorder:383
+msgid "Follow Mouse"
+msgstr "Suivre la souris"
+
+#: green-recorder:363
+msgid "A simple screen recorder for Linux desktop. Supports Wayland & Xorg."
+msgstr "Un enregistreur d'écran simple pour Linux. Supporte Wayland & Xorg."
+
+#: green-recorder:369
+msgid "Select a Window"
+msgstr "Sélectionnez une fenêtre"
+
+#: green-recorder:370
+msgid "Select an Area"
+msgstr "Sélectionnez une zone"
+
+#: green-recorder:371
+msgid "Frames:"
+msgstr "Images :"
+
+#: green-recorder:372
+msgid "Delay:"
+msgstr "Délais :"
+
+#: green-recorder:373
+msgid "Run Command After Recording:"
+msgstr "Executer une commande après l'enregistrement :"
+
+#: green-recorder:374
+msgid "Default frames:"
+msgstr "Images par défaut:"
+
+#: green-recorder:375
+msgid "Default delay:"
+msgstr "Délais par défaut:"
+
+#: green-recorder:376
+msgid "Default folder:"
+msgstr "Dossier par défaut:"
+
+#: green-recorder:377
+msgid "Default pipeline:"
+msgstr "Pipeline par défaut:"
+
+#: green-recorder:378
+msgid "Default command:"
+msgstr "Commande par défaut:"
+
+#: green-recorder:379
+msgid "Audio Input Source:"
+msgstr "Source entrée audio:"
+
+#: green-recorder:382
+msgid "Record Mouse"
+msgstr "Enregistrer la souris"
+
+#: green-recorder:384
+msgid "Default filename:"
+msgstr "Nom du fichier par défaut:"
+
+#: green-recorder:385
+msgid "If you want, you can:"
+msgstr "Si vous voulez, vous pouvez:"
+
+#: green-recorder:415
+msgid "Default PulseAudio Input Source"
+msgstr "Source PulseAudio par défaut"
+
+#: green-recorder:472
+msgid "Area Chooser"
+msgstr "Sélecteur de zone"
