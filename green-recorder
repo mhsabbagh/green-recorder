@@ -508,10 +508,10 @@ class Handler:
         areaaxis = [int(l.split(':')[1]) for l in output.split('\n')]
         
         global WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
-        WindowXAxis = areaaxis[0]
-        WindowYAxis = areaaxis[1]
-        WindowWidth = areaaxis[2]
-        WindowHeight = areaaxis[3]
+        WindowXAxis = areaaxis[0] + 12
+        WindowYAxis = areaaxis[1] + 48
+        WindowWidth = areaaxis[2] - 24
+        WindowHeight = areaaxis[3] - 80
         
         areachooser.hide()
         sendnotification("Your area position has been saved!", 3)
