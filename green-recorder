@@ -84,7 +84,15 @@ else:
 def sendnotification(text, time):
     notifications = bus.get('.Notifications')
     notifications.Notify('GreenRecorder', 0, 'green-recorder', "Green Recorder", text, [], {}, time*1000)
-      
+
+def checkStatus():
+  os.system("sleep 3")
+  if os.path.isfile(RecorderAbsPathName) == False:
+    window.show()
+    sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
+  else:
+    sendnotification("Recording has started!", 1)
+    
 def RecordXorg():
     global DISPLAY, RecorderDisplay
     try:
@@ -140,14 +148,11 @@ def RecordXorg():
     global RecorderProcess
    
     RecorderProcess = subprocess.Popen(RecorderCommand)
-    subprocess.call(["sleep", "3.5"])
-    if os.path.isfile(RecorderAbsPathName) == False:
-      window.show()
-      sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
-    else:
-      sendnotification("Recording has started!", 1)
+    window.iconify()
     
-    
+    t = threading.Thread(target=checkStatus)
+    t.daemon = True
+    t.start()
 
 def RecordGnome():
     AudioRecording = []
@@ -179,7 +184,11 @@ def RecordGnome():
       else:
         GNOMEScreencast.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mousecheck.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
     
-    sendnotification("Recording has started!", 1)
+    window.iconify()
+    
+    t = threading.Thread(target=checkStatus)
+    t.daemon = True
+    t.start()
       
 def checkbool(s):
   return s.lower() in ("True", "true", "1")
