@@ -49,7 +49,7 @@ Make sure you have enabled the multiverse and universe repositories before tryin
 
 You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/fossproject/ppa/ubuntu/
 
-### Fedora 24/25/26/Rawhide
+### Fedora 24/25/26/27/Rawhide
 
 To install Green Recorder on Fedora 24:
 
@@ -64,6 +64,11 @@ Fedora 25:
 Fedora 26:
 
     sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_26/home:mhsabbagh.repo
+    sudo dnf install green-recorder
+    
+Fedora 27:
+
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_27/home:mhsabbagh.repo
     sudo dnf install green-recorder
 
 Fedora Rawhide:
