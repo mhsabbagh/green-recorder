@@ -255,6 +255,13 @@ def hide_on_delete(widget, event):
     widget.hide()
     return True
     
+def showpreferences(self):
+    preferenceswindow.show()
+    
+def showabout(self):
+    aboutdialog.run()
+    aboutdialog.hide()
+    
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
 builder.add_from_file("/usr/share/green-recorder/ui.glade")
@@ -306,6 +313,15 @@ videoswitch = builder.get_object("videoswitch")
 audioswitch = builder.get_object("audioswitch")
 mouseswitch = builder.get_object("mouseswitch")
 followmouseswitch = builder.get_object("followmouseswitch")
+
+preferencesmenuitem = builder.get_object("item1")
+aboutmenuitem = builder.get_object("item2")
+preferencesmenuitem.set_label(_("Preferences"))
+aboutmenuitem.set_label(_("About"))
+preferencesmenuitem.set_use_underline(True)
+preferencesmenuitem.connect("activate", showpreferences)
+aboutmenuitem.connect("activate", showabout)
+
 
 # Assign the texts to the interface
 window.set_title(_("Green Recorder"))
@@ -418,10 +434,6 @@ if "wayland" in DisplayServer:
     pass
 
 class Handler:
-    def about(self, GtkButton):
-        aboutdialog.run()
-        aboutdialog.hide()
-
     def recordclicked(self, GtkButton):
         record()
         
