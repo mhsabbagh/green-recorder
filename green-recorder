@@ -504,12 +504,6 @@ class Handler:
       CommandToRun = commandentry.get_text()
       subprocess.Popen([CommandToRun], shell=True)
         
-    def preferencesbuttonclicked(self, GtkButton):
-        preferenceswindow.show()
-        
-    def preferencesclosebutton(self, GtkButton):
-        preferenceswindow.hide()
-        
     def playbuttonclicked(self, GtkButton):
         subprocess.call(["xdg-open", urllib.unquote(RecorderAbsPathName)])
 
