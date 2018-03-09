@@ -498,11 +498,6 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-media-play</property>
   </object>
-  <object class="GtkImage" id="image4">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-media-record</property>
-  </object>
   <object class="GtkImage" id="image5">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -895,11 +890,12 @@
         <property name="show_close_button">True</property>
         <child>
           <object class="GtkButton" id="recordbutton">
+            <property name="label">gtk-media-record</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="image">image4</property>
             <property name="relief">none</property>
+            <property name="use_stock">True</property>
             <property name="always_show_image">True</property>
             <signal name="clicked" handler="recordclicked" swapped="no"/>
           </object>
