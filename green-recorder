@@ -161,6 +161,7 @@ def RecordGnome():
     
     if formatchooser.get_active_id() == "webm":
       RecorderPipeline = "vp8enc min_quantizer=10 max_quantizer=50 cq_level=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux"
+
       
     if audiocheck.get_active() == True:
       AudioRecording.append("ffmpeg")
@@ -254,10 +255,7 @@ def record():
 def hide_on_delete(widget, event):
     widget.hide()
     return True
-    
-def showpreferences(self):
-    preferenceswindow.show()
-    
+
 def showabout(self):
     aboutdialog.run()
     aboutdialog.hide()
@@ -269,7 +267,6 @@ builder.add_from_file("/usr/share/green-recorder/ui.glade")
 # Create pointers.
 window = builder.get_object("window1")
 areachooser = builder.get_object("window2")
-preferenceswindow = builder.get_object("preferenceswindow")
 aboutdialog = builder.get_object("aboutdialog")
 folderchooser = builder.get_object("filechooserbutton1")
 folderchooser2 = builder.get_object("filechooserbutton2")
@@ -314,27 +311,20 @@ audioswitch = builder.get_object("audioswitch")
 mouseswitch = builder.get_object("mouseswitch")
 followmouseswitch = builder.get_object("followmouseswitch")
 
-preferencesmenuitem = builder.get_object("item1")
 aboutmenuitem = builder.get_object("item2")
-preferencesmenuitem.set_label(_("Preferences"))
 aboutmenuitem.set_label(_("About"))
-preferencesmenuitem.set_use_underline(True)
-preferencesmenuitem.connect("activate", showpreferences)
 aboutmenuitem.connect("activate", showabout)
 
 
 # Assign the texts to the interface
 window.set_title(_("Green Recorder"))
 areachooser.set_name(_('AreaChooser'))
-preferenceswindow.set_title(_('Green Recorder Preferences'))
+
 window.connect("delete-event", Gtk.main_quit)
 filenameentry.set_placeholder_text(_("File Name.."))
 commandentry.set_placeholder_text(_("Enter your command here.."))
-commandentry2.set_placeholder_text(_("Enter your command here.."))
-preffilename.set_placeholder_text(_("File Name (Will be overwritten).."))
 formatchooser.append("mkv", _("MKV (Matroska multimedia container format)"))
 formatchooser.append("avi", _("AVI (Audio Video Interleaved)"))
-formatchooser.append("mp4", _("MP4 (MPEG-4 Part 14)"))
 formatchooser.append("wmv", _("WMV (Windows Media Video)"))
 formatchooser.append("gif", _("GIF (Graphics Interchange Format)"))
 formatchooser.append("nut", _("NUT (NUT Recording Format)"))
@@ -354,41 +344,17 @@ aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>','Alessandro T
 aboutdialog.set_artists(['Mustapha Assabar'])
 aboutdialog.set_website("https://foss-project.com")
 aboutdialog.set_logo_icon_name("green-recorder")
-preferenceswindow.set_icon_name("green-recorder")
 windowgrabbutton.set_label(_("Select a Window"))
 areagrabbutton.set_label(_("Select an Area"))
 frametext.set_label(_("Frames:"))
 delaytext.set_label(_("Delay:"))
 commandtext.set_label(_("Run Command After Recording:"))
-frameslabel.set_label(_("Default frames:"))
-delaylabel.set_label(_("Default delay:"))
-folderlabel.set_label(_("Default folder:"))
-commandlabel.set_label(_("Default command:"))
 audiosourcelabel.set_label(_("Audio Input Source:"))
-prefrecvidlabel.set_label(_("Record Video"))
-prefrecaudlabel.set_label(_("Record Audio"))
-prefrecmouslabel.set_label(_("Record Mouse"))
-preffollowmouselabel.set_label(_("Follow Mouse"))
-preffilenamelabel.set_label(_("Default filename:"))
-preferenceswindow.connect("delete-event", hide_on_delete)
+
 areachooser.connect("delete-event", hide_on_delete)
 
-# Get defaults from configuration file.
-delayadjustment.set_value(int(config.get('Options', 'delay')))
-framesadjustment.set_value(int(config.get('Options', 'frames')))
-delayprefadjustment.set_value(int(config.get('Options', 'delay')))
-framesprefadjustment.set_value(int(config.get('Options', 'frames')))
 FolderPath = config.get('Options', 'folder')
 folderchooser.set_uri(urllib.unquote(FolderPath))
-folderchooser2.set_uri(urllib.unquote(FolderPath))
-commandentry.set_text(config.get('Options', 'command'))
-commandentry2.set_text(config.get('Options', 'command'))
-videoswitch.set_state(checkbool(config.get('Options', 'videocheck')))
-audioswitch.set_state(checkbool(config.get('Options', 'audiocheck')))
-mouseswitch.set_state(checkbool(config.get('Options', 'mousecheck')))
-followmouseswitch.set_state(checkbool(config.get('Options', 'followmousecheck')))
-preffilename.set_text(config.get('Options', 'filename'))
-filenameentry.set_text(config.get('Options', 'filename'))
 
 videocheck.set_active(checkbool(config.get('Options', 'videocheck')))
 audiocheck.set_active(checkbool(config.get('Options', 'audiocheck')))
@@ -476,10 +442,8 @@ class Handler:
         
       elif "gnomewayland" in DisplayServer:
         subprocess.call(["sleep", "1"])
-        
-        global RecorderPipeline
-        del RecorderPipeline
-        
+
+
         try:
           GNOMEScreencast.StopScreencast()
           AudioProcess.terminate()
