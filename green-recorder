@@ -33,7 +33,6 @@ if not os.path.exists(confDir):
 if os.path.isfile(confFile):
   config.read(confFile)
 else:
-
   VideosFolder = GLib.get_user_special_dir(GLib.USER_DIRECTORY_VIDEOS)
   if VideosFolder is None:
     VideosFolder = os.environ['HOME']
@@ -260,7 +259,7 @@ def showabout(self):
     
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("/usr/share/grenn-recorder/ui.glade")
+builder.add_from_file("/usr/share/green-recorder/ui.glade")
 
 # Create pointers.
 window = builder.get_object("window1")
@@ -340,10 +339,10 @@ frames.set_value(int(config.get('Options', 'frames')))
 delay.set_value(int(config.get('Options', 'delay')))
 filename.set_text(config.get('Options', 'filename'))
 folderchooser.set_uri(config.get('Options', 'folder'))
-videoswitch.set_active(checkbool(config.get('Options', 'videocheck')))
-audioswitch.set_active(checkbool(config.get('Options', 'audiocheck')))
-mouseswitch.set_active(checkbool(config.get('Options', 'mousecheck')))
-followmouseswitch.set_active(checkbool(config.get('Options', 'followmousecheck')))
+videoswitch.set_active(checkbool(config.get('Options', 'videoswitch')))
+audioswitch.set_active(checkbool(config.get('Options', 'audioswitch')))
+mouseswitch.set_active(checkbool(config.get('Options', 'mouseswitch')))
+followmouseswitch.set_active(checkbool(config.get('Options', 'followmouseswitch')))
 command.set_text(config.get('Options', 'command'))
 
 stopbutton.set_sensitive(False)
