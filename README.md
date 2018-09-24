@@ -1,5 +1,3 @@
-[![Snap Status](https://build.snapcraft.io/badge/foss-project/green-recorder.svg)](https://build.snapcraft.io/user/foss-project/green-recorder)
-
 # Green Recorder
 
 ![Green Recorder](https://i.imgur.com/bZJtdIs.png)
