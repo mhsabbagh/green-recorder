@@ -69,7 +69,7 @@ try:
   DisplayServer = os.environ["XDG_SESSION_TYPE"]
 except:
   DisplayServer = "xorg"
-  pass
+  pass #Ok, cause it means user is using Xorg.
   
 print "You are recording on: " + str(DisplayServer)
 
@@ -97,7 +97,7 @@ def RecordXorg():
     try:
       areaaxis
     except:
-      pass
+      pass #Ok, cause it means user didn't select an area.
     else:
       RecorderDisplay = str(WindowWidth) + "x" + str(WindowHeight)
       DISPLAY = DISPLAY + "+" + str(WindowXAxis) + "," + str(WindowYAxis)
@@ -292,7 +292,6 @@ videoswitch = builder.get_object("videoswitch")
 audioswitch = builder.get_object("audioswitch")
 mouseswitch = builder.get_object("mouseswitch")
 followmouseswitch = builder.get_object("followmouseswitch")
-
 aboutmenuitem = builder.get_object("item2")
 aboutmenuitem.set_label(_("About"))
 aboutmenuitem.connect("activate", showabout)
@@ -332,9 +331,7 @@ frametext.set_label(_("Frames:"))
 delaytext.set_label(_("Delay:"))
 commandtext.set_label(_("Run Command After Recording:"))
 audiosourcelabel.set_label(_("Audio Input Source:"))
-
 areachooser.connect("delete-event", hide_on_delete)
-
 frames.set_value(int(config.get('Options', 'frames')))
 delay.set_value(int(config.get('Options', 'delay')))
 filename.set_text(config.get('Options', 'filename'))
@@ -353,8 +350,8 @@ audiosource.append("default", _("Default PulseAudio Input Source"))
 try:
   audiosourcesnames = subprocess.check_output("pacmd list-sources | grep -e device.description", shell=True)
   audiosourcesids = subprocess.check_output("pacmd list-sources | grep -e device.string", shell=True)
-except:
-  pass
+except Exception as e:
+  print(e)
 audiosourcesnames = audiosourcesnames.split("\n")[:-1]
 
 for i in range(len(audiosourcesnames)):
@@ -378,10 +375,8 @@ if "wayland" in DisplayServer:
     s = subprocess.check_output("echo $GDK_BACKEND", shell=True)
     if "x11" not in s:
       sendnotification("You didn't run the program using the application icon (desktop file). This will cause the program not to work. Run it using the icon from the menus only. (Need to export GDK_BACKEND=x11 first)", 6)
-    else:
-      pass
-  except:
-    pass
+  except Exception as e:
+    print(e)
 
 class Handler:
     def recordclicked(self, GtkButton):
@@ -416,7 +411,7 @@ class Handler:
         global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
         del areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
       except NameError:
-        pass
+        pass #Ok, cause it means user didn't select a window/area.
       
       if "xorg" in DisplayServer:
         subprocess.call(["sleep", "1"])
@@ -430,8 +425,8 @@ class Handler:
         try:
           GNOMEScreencast.StopScreencast()
           AudioProcess.terminate()
-        except:
-          pass # I know.
+        except Exception as e:
+          print(e)
         
         sendnotification("Recording has stopped!", 1)
         
