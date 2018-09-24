@@ -68,6 +68,11 @@ Fedora 27:
 
     sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_27/home:mhsabbagh.repo
     sudo dnf install green-recorder
+    
+Fedora 28:
+
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_28/home:mhsabbagh.repo
+    sudo dnf install green-recorder
 
 Fedora Rawhide:
 
