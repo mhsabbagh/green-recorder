@@ -43,10 +43,10 @@ else:
   config.set('Options', 'folder', "file://" + VideosFolder)
   config.set('Options', 'command', '')
   config.set('Options', 'filename', '')
-  config.set('Options', 'videoswitch', 'True')
-  config.set('Options', 'audioswitch', 'True')
-  config.set('Options', 'mouseswitch', 'True')
-  config.set('Options', 'followmouseswitch', 'False')
+  config.set('Options', 'videocheck', 'True')
+  config.set('Options', 'audiocheck', 'True')
+  config.set('Options', 'mousecheck', 'True')
+  config.set('Options', 'followmousecheck', 'False')
   with open(confFile, 'wb') as confFile2:
     config.write(confFile2)
 
