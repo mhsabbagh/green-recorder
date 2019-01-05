@@ -35,7 +35,7 @@ Alternatively, you can open the green-recorder.pot file using programs like PoEd
 
 ## Download
 
-### Ubuntu 16.04/16.10/17.04/17.10/18.04 or Linux Mint 18/18.1/18.2
+### Ubuntu 18.04 or Linux Mint 19
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
@@ -45,29 +45,9 @@ Make sure you have enabled the multiverse and universe repositories before tryin
 
 ### Debian
 
-You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/fossproject/ppa/ubuntu/
+You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/fossproject/ppa/ubuntu/pool/main/
 
-### Fedora 24/25/26/27/Rawhide
-
-To install Green Recorder on Fedora 24:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_24/home:mhsabbagh.repo
-    sudo dnf install green-recorder
-
-Fedora 25:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_25/home:mhsabbagh.repo
-    sudo dnf install green-recorder
-
-Fedora 26:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_26/home:mhsabbagh.repo
-    sudo dnf install green-recorder
-    
-Fedora 27:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_27/home:mhsabbagh.repo
-    sudo dnf install green-recorder
+### Fedora 28/Rawhide
     
 Fedora 28:
 
@@ -78,6 +58,8 @@ Fedora Rawhide:
 
     sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
     sudo dnf install green-recorder
+    
+Fedora 29 package is WIP.
      
 ### Arch Linux
 
