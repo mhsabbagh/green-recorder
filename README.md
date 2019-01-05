@@ -78,14 +78,6 @@ Fedora Rawhide:
 
     sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
     sudo dnf install green-recorder
-
-### CentOS 7
-
-Run the following commands as root:
-
-    cd /etc/yum.repos.d/
-    wget http://download.opensuse.org/repositories/home:mhsabbagh/CentOS_7/home:mhsabbagh.repo
-    yum install green-recorder
      
 ### Arch Linux
 
