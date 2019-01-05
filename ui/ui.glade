@@ -78,7 +78,6 @@
     <property name="opacity">0.99999999977648257</property>
     <property name="resizable">False</property>
     <property name="window_position">center</property>
-    <property name="icon">/usr/share/pixmaps/green-recorder.png</property>
     <property name="gravity">center</property>
     <child type="titlebar">
       <object class="GtkHeaderBar" id="headerbar1">

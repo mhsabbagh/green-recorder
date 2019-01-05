@@ -259,7 +259,10 @@ def showabout(self):
     
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-builder.add_from_file("/usr/share/green-recorder/ui.glade")
+try:
+  builder.add_from_file("/usr/share/green-recorder/ui.glade")
+except:
+  builder.add_from_file("/usr/local/share/green-recorder/ui.glade")
 
 # Create pointers.
 window = builder.get_object("window1")
