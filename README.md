@@ -14,9 +14,6 @@ Here's a GIF image recorded with Green Recorder for Green Recorder:
 
 ![Green Recorder](https://media.giphy.com/media/3o6vXLgAWsH8qAcpDa/giphy.gif)
 
-Please, consider supporting us on Patreon if you like the software. More features and new versions would be released with each goal we achieve there: https://www.patreon.com/fossproject
-
-
 ### How it works?
 
 It uses the D-Bus API to connect to the built-in screencasting tool in GNOME Shell. It uses this to record video. To record audio, it launches an instance of ffmpeg in the background. After the recording is finished, it merges the two files into the WebM file.
