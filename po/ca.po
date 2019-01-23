@@ -1,0 +1,147 @@
+# Green Recorder
+# Copyright (C) 2017, FOSS Project
+# This file is distributed under the same license as the Green Recorder package.
+# M.Hanny Sabbagh <mhsabbagh@outlook.com>, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-08 10:53+0300\n"
+"PO-Revision-Date: 2019-01-22 21:56-0600\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ca\n"
+
+#: green-recorder:338 green-recorder:358
+msgid "Green Recorder"
+msgstr "Green Recorder"
+
+#: green-recorder:339
+msgid "AreaChooser"
+msgstr "Selector d’àrea"
+
+#: green-recorder:340
+msgid "Green Recorder Preferences"
+msgstr "Preferències del Green Recorder"
+
+#: green-recorder:342 green-recorder:345
+msgid "File Name (Will be overwritten).."
+msgstr "Nom de fitxer (se sobrescriurà)…"
+
+#: green-recorder:343 green-recorder:344
+msgid "Enter your command here.."
+msgstr "Introduïu la vostra ordre aquí…"
+
+#: green-recorder:346
+msgid "MKV (Matroska multimedia container format)"
+msgstr "MKV (format de contenidors multimèdia Matroska)"
+
+#: green-recorder:347
+msgid "AVI (Audio Video Interleaved)"
+msgstr "AVI (àudio i vídeo intercalats)"
+
+#: green-recorder:348
+msgid "MP4 (MPEG-4 Part 14)"
+msgstr "MP4 (MPEG-4 part 14)"
+
+#: green-recorder:349
+msgid "WMV (Windows Media Video)"
+msgstr "WMV (vídeo de Windows Media)"
+
+#: green-recorder:350
+msgid "GIF (Graphics Interchange Format)"
+msgstr "GIF (format d’intercanvi de gràfics)"
+
+#: green-recorder:351
+msgid "NUT (NUT Recording Format)"
+msgstr "NUT (format d’enregistrament NUT)"
+
+#: green-recorder:353 green-recorder:380
+msgid "Record Video"
+msgstr "Enregistra el vídeo"
+
+#: green-recorder:354 green-recorder:381
+msgid "Record Audio"
+msgstr "Enregistra l’àudio"
+
+#: green-recorder:355
+msgid "Show Mouse"
+msgstr "Mostra el ratolí"
+
+#: green-recorder:356 green-recorder:383
+msgid "Follow Mouse"
+msgstr "Segueix el ratolí"
+
+#: green-recorder:363
+msgid "A simple screen recorder for Linux desktop. Supports Wayland & Xorg."
+msgstr "Enregistrador de pantalla senzill per al Linux. Compatible amb el Wayland i l’X.org."
+
+#: green-recorder:369
+msgid "Select a Window"
+msgstr "Selecciona una finestra"
+
+#: green-recorder:370
+msgid "Select an Area"
+msgstr "Selecciona una àrea"
+
+#: green-recorder:371
+msgid "Frames:"
+msgstr "Fotogrames:"
+
+#: green-recorder:372
+msgid "Delay:"
+msgstr "Retard:"
+
+#: green-recorder:373
+msgid "Run Command After Recording:"
+msgstr "Executa una ordre després d’enregistrar:"
+
+#: green-recorder:374
+msgid "Default frames:"
+msgstr "Fotogrames per defecte:"
+
+#: green-recorder:375
+msgid "Default delay:"
+msgstr "Retard per defecte:"
+
+#: green-recorder:376
+msgid "Default folder:"
+msgstr "Carpeta per defecte:"
+
+#: green-recorder:377
+msgid "Default pipeline:"
+msgstr "Canonada per defecte:"
+
+#: green-recorder:378
+msgid "Default command:"
+msgstr "Ordre per defecte:"
+
+#: green-recorder:379
+msgid "Audio Input Source:"
+msgstr "Origen d’entrada d’àudio:"
+
+#: green-recorder:382
+msgid "Record Mouse"
+msgstr "Enregistra el ratolí"
+
+#: green-recorder:384
+msgid "Default filename:"
+msgstr "Nom de fitxer per defecte:"
+
+#: green-recorder:385
+msgid "If you want, you can:"
+msgstr "Si voleu, podeu:"
+
+#: green-recorder:415
+msgid "Default PulseAudio Input Source"
+msgstr "Origen d’entrada del PulseAudio per defecte"
+
+#: green-recorder:472
+msgid "Area Chooser"
+msgstr "Selector d’àrea"
