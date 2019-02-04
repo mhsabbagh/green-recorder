@@ -1,3 +1,15 @@
+green-recorder (3.2) bionic; urgency=low 
+
+  * Enhanced the UI.
+  * Restored system tray icon.
+  * Removed preferences window. Now the program will use the same options just when you closed it last time.
+  * Now the program auto-hides its window on recording, and auto-shows when it's stopped.
+  * Added a stop notification when recording stops.
+  * Added various translations.
+  * Various bug fixes.
+  
+ -- M.Hanny Sabbagh <mhsabbagh@outlook.com>  Mon, 4 Feb 2019 17:52:00 +0200
+
 green-recorder (3.1) zesty; urgency=low 
 
   * Removed the system tray indicator, and added a stop button.
