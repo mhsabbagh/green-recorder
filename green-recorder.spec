@@ -9,6 +9,7 @@ Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{version}.tar.gz
 License: GPLv3
 BuildArch: noarch
+BuildRequires: python2
 BuildRequires: python2-devel
 Requires: python2
 Requires: python2-pydbus
@@ -41,7 +42,7 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
-* Mon Feb 4 2019 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.2
+* Mon Feb 04 2019 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.2
 - Enhanced the UI.
 - Restored system tray icon.
 - Removed preferences window. Now the program will use the same options just when you closed it last time.
@@ -61,26 +62,26 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 - Fixed small issues evreywhere.
 - Restructured UI.
 
-* Sun Aug 8 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.4
+* Sun Aug 08 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.4
 - Fixed small issues evreywhere.
 - Removed Wayland pipeline editing option.
 - Reworked UI.
 - Updated translation template.
 - Fixed applet on MATE.
 
-* Sat Aug 7 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
+* Sat Aug 07 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.3
 - Fixed small issues.
 
-* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.2
+* Fri Aug 06 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.2
 - Fixed #46.
 
-* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1.1
+* Fri Aug 06 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1.1
 - A small fix for UI warning.
 
-* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1
+* Fri Aug 06 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0.1
 - A small fix for UI warning.
 
-* Fri Aug 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0
+* Fri Aug 06 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.0
 - GIF format support is now available!
 - Added ability to choose the audio input source.
 - Preferences window was added to allow setting default values. You can now also edit the default Wayland pipeline.
@@ -92,7 +93,7 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 - Introduced a better detection method for the running display server, adding possibility to support other servers in the future with no problem.
 - Various fixes and edits everywhere.
 
-* Tue Jun 6 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2
+* Tue Jun 06 2017 M.Hanny Sabbagh <mhsabbagh@outlook.com> 2.2
 - Added localization support.
 - Added Arabic language.
 - Changed window opacity to 1.00
