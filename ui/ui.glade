@@ -104,7 +104,7 @@
             <property name="receives_default">True</property>
             <property name="image">image5</property>
             <property name="relief">none</property>
-            <signal name="clicked" handler="stoprecording" swapped="no"/>
+            <signal name="clicked" handler="stoprecordingclicked" swapped="no"/>
           </object>
           <packing>
             <property name="position">2</property>

@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with Green Recorder.  If not, see <http://www.gnu.org/licenses/>.
 import gi
-
+gi.require_version('AppIndicator3', '0.1')
 gi.require_version('Gtk','3.0')
 
-from gi.repository import Gtk, Gdk, GLib
+from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
 import subprocess, signal, threading, datetime, urllib, gettext, locale, os, ConfigParser
 
@@ -91,7 +91,30 @@ def checkStatus():
     sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
   else:
     sendnotification("Recording has started!", 1)
-    
+
+def recorderindicator():
+    # Create the app indicator widget.
+    global indicator
+    try:
+      s = subprocess.check_output("ps -cat|grep mate-panel", shell=True)
+    except:
+      indicator = appindicator.Indicator.new("Green Recorder", '/usr/share/pixmaps/green-recorder.png', appindicator.IndicatorCategory.APPLICATION_STATUS)
+      pass
+    else:
+      indicator = appindicator.Indicator.new("Green Recorder", 'green-recorder', appindicator.IndicatorCategory.APPLICATION_STATUS)
+    indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
+    indicator.set_menu(indicator_menu())
+    indicator.set_secondary_activate_target(stoprecordingbutton)
+    Gtk.main()
+
+def indicator_menu():
+    menu = Gtk.Menu()
+    stoprecordingbutton = Gtk.MenuItem(_('Stop Recording'))
+    stoprecordingbutton.connect('activate', stoprecording)
+    menu.append(stoprecordingbutton)
+    menu.show_all()
+    return menu
+
 def RecordXorg():
     global DISPLAY, RecorderDisplay
     try:
@@ -148,6 +171,8 @@ def RecordXorg():
    
     RecorderProcess = subprocess.Popen(RecorderCommand)
     window.iconify()
+    Gdk.flush()
+    recorderindicator()
     
     t = threading.Thread(target=checkStatus)
     t.daemon = True
@@ -185,11 +210,63 @@ def RecordGnome():
         GNOMEScreencast.ScreencastArea(WindowXAxis, WindowYAxis, WindowWidth, WindowHeight, RecorderAbsPathName, {'framerate': GLib.Variant('i', int(RecorderFrames)), 'draw-cursor': GLib.Variant('b', mouseswitch.get_active()), 'pipeline': GLib.Variant('s', RecorderPipeline)})
     
     window.iconify()
-    
+    Gdk.flush()
+    traythread = threading.RLock()
+    with traythread:
+      recorderindicator()
+      
     t = threading.Thread(target=checkStatus)
     t.daemon = True
     t.start()
+     
+def stoprecording(_):
+  subprocess.call(["sleep", "1"]) # Wait ffmpeg.
+  window.show()
+  
+  playbutton.set_sensitive(True)
+  
+  try:
+    global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
+    del areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
+  except NameError:
+    pass #Ok, cause it means user didn't select a window/area.
+  
+  if "xorg" in DisplayServer:
+    subprocess.call(["sleep", "1"])
+    RecorderProcess.terminate()
+    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
+    sendnotification("Recording has stopped!", 1)
+    
+  elif "gnomewayland" in DisplayServer:
+    subprocess.call(["sleep", "1"])
+    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
+
+
+    try:
+      GNOMEScreencast.StopScreencast()
+      AudioProcess.terminate()
+    except Exception as e:
+      print(e)
+    
+    sendnotification("Recording has stopped!", 1)
+    
+    if videoswitch.get_active() == True and audioswitch.get_active() == True:
+      m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
+      k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderAbsPathName])
+    elif videoswitch.get_active() == False and audioswitch.get_active() == True:
+      k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])
       
+  if formatchooser.get_active_id() == "gif":
+    sendnotification("Your GIF image is currently being processed, this may take a while according to your PC's resources.", 5)
+    
+    subprocess.call(["mv", RecorderAbsPathName, RecorderAbsPathName+".tmp"])
+    subprocess.call(["convert", "-layers", "Optimize", RecorderAbsPathName+".tmp", RecorderAbsPathName])
+    subprocess.call(["rm", RecorderAbsPathName+".tmp"])
+    
+  window.present()
+  CommandToRun = command.get_text()
+  subprocess.Popen([CommandToRun], shell=True)
+ 
 def checkbool(s):
   return s.lower() in ("True", "true", "1")
 
@@ -403,51 +480,8 @@ class Handler:
         areachooser.set_title(_("Area Chooser"))
         areachooser.show()
         
-    def stoprecording(self, GtkButton):
-      subprocess.call(["sleep", "1"]) # Wait ffmpeg.
-
-      window.show()
-      
-      playbutton.set_sensitive(True)
-      
-      try:
-        global areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
-        del areaaxis, WindowXAxis, WindowYAxis, WindowWidth, WindowHeight
-      except NameError:
-        pass #Ok, cause it means user didn't select a window/area.
-      
-      if "xorg" in DisplayServer:
-        subprocess.call(["sleep", "1"])
-        RecorderProcess.terminate()
-        sendnotification("Recording has stopped!", 1)
-        
-      elif "gnomewayland" in DisplayServer:
-        subprocess.call(["sleep", "1"])
-
-
-        try:
-          GNOMEScreencast.StopScreencast()
-          AudioProcess.terminate()
-        except Exception as e:
-          print(e)
-        
-        sendnotification("Recording has stopped!", 1)
-        
-        if videoswitch.get_active() == True and audioswitch.get_active() == True:
-          m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
-          k = subprocess.Popen(["mv", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), RecorderAbsPathName])
-        elif videoswitch.get_active() == False and audioswitch.get_active() == True:
-          k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])
-          
-      if formatchooser.get_active_id() == "gif":
-        sendnotification("Your GIF image is currently being processed, this may take a while according to your PC's resources.", 5)
-        
-        subprocess.call(["mv", RecorderAbsPathName, RecorderAbsPathName+".tmp"])
-        subprocess.call(["convert", "-layers", "Optimize", RecorderAbsPathName+".tmp", RecorderAbsPathName])
-        subprocess.call(["rm", RecorderAbsPathName+".tmp"])
-        
-      CommandToRun = command.get_text()
-      subprocess.Popen([CommandToRun], shell=True)
+    def stoprecordingclicked(self, GtkButton):
+        stoprecording()
         
     def playbuttonclicked(self, GtkButton):
         subprocess.call(["xdg-open", urllib.unquote(RecorderAbsPathName)])
