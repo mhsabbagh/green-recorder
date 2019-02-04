@@ -7,6 +7,6 @@ Build-Depends: debhelper (>= 9), python2.7, python-dev, python-configparser, pul
 
 Package: green-recorder
 Architecture: all
-Depends: gir1.2-appindicator3-0.1, gawk, python-gobject, python-urllib3, x11-utils, python-pydbus, ffmpeg (>= 3.0)
+Depends: gir1.2-appindicator3-0.1, gawk, python, python-gobject, python-urllib3, x11-utils, python-pydbus, ffmpeg (>= 3.0)
 Description: Green Recorder
  Record your desktop easily using a simple GUI. Built using Python, GTK+ 3 and ffmpeg. Very easy to use. Supports both Xorg and Wayland (GNOME) display servers.
