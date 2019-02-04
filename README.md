@@ -32,7 +32,7 @@ Alternatively, you can open the green-recorder.pot file using programs like PoEd
 
 ## Download
 
-### Ubuntu 18.04 or Linux Mint 19
+### Ubuntu 18.04/18.10/19.04 or Linux Mint 19/20
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
