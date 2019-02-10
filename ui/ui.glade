@@ -135,7 +135,7 @@
               <object class="GtkImage">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="icon_name">menu_new</property>
+                <property name="icon_name">view-list-symbolic</property>
               </object>
             </child>
           </object>

@@ -396,8 +396,8 @@ mouseswitch.set_label(_("Show Mouse"))
 followmouseswitch.set_label(_("Follow Mouse"))
 aboutdialog.set_transient_for(window)
 aboutdialog.set_program_name(_("Green Recorder"))
-aboutdialog.set_version("3.2")
-aboutdialog.set_copyright("© 2019 FOSS Project")
+aboutdialog.set_version("3.2.1")
+aboutdialog.set_copyright("© 2019 M.Hanny Sabbagh")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
 aboutdialog.set_comments(_("A simple screen recorder for Linux desktop. Supports Wayland & Xorg."))
@@ -481,7 +481,7 @@ class Handler:
         areachooser.show()
         
     def stoprecordingclicked(self, GtkButton):
-        stoprecording()
+        stoprecording(_)
         
     def playbuttonclicked(self, GtkButton):
         subprocess.call(["xdg-open", urllib.unquote(RecorderAbsPathName)])
