@@ -547,7 +547,7 @@ class Handler:
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
           
-    def followmouseswitchchanged(self, GtkSwitch, s):
+    def followmouseswitchchanged(self, GtkSwitch):
         config.set('Options', 'followmousecheck', followmouseswitch.get_active())
         global confFile
         with open(confFile, 'w+') as newconfFile:
