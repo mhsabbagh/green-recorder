@@ -28,7 +28,7 @@ Alternatively, you can open the green-recorder.pot file using programs like PoEd
 
 ## Download
 
-### Ubuntu 18.04/18.10/19.04 or Linux Mint 19/20
+### Ubuntu 18.04/18.10/19.04 or Linux Mint 19/19.1
 
 Make sure you have enabled the multiverse and universe repositories before trying to install the program from the PPA (to be able to download the dependencies). You can install Green Recorder from the following PPA:
 
@@ -47,12 +47,12 @@ Fedora 28:
     sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_28/home:mhsabbagh.repo
     sudo dnf install green-recorder
 
-Fedora Rawhide:
+Fedora 29:
 
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_Rawhide/home:mhsabbagh.repo
+    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_29/home:mhsabbagh.repo
     sudo dnf install green-recorder
     
-Fedora 29 package is WIP.
+Fedora Rawhide package is WIP.
      
 ### Arch Linux
 
