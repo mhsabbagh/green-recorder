@@ -87,10 +87,8 @@ def sendnotification(text, time):
 def checkStatus():
   os.system("sleep 3")
   if os.path.isfile(RecorderAbsPathName) == False:
-    window.show()
+    window.present()
     sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
-  else:
-    sendnotification("Recording has started!", 1)
 
 def recorderindicator():
     # Create the app indicator widget.
@@ -167,10 +165,11 @@ def RecordXorg():
     RecorderCommand.append("-y")
 
     global RecorderProcess
-   
     RecorderProcess = subprocess.Popen(RecorderCommand)
+    
     window.iconify()
     Gdk.flush()
+    sendnotification("Recording has started!", 1)
     recorderindicator()
     
     t = threading.Thread(target=checkStatus)
@@ -220,7 +219,7 @@ def RecordGnome():
      
 def stoprecording(_):
   subprocess.call(["sleep", "1"]) # Wait ffmpeg.
-  window.show()
+  window.present()
   
   playbutton.set_sensitive(True)
   
@@ -233,11 +232,13 @@ def stoprecording(_):
   if "xorg" in DisplayServer:
     subprocess.call(["sleep", "1"])
     RecorderProcess.terminate()
-    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
     sendnotification("Recording has stopped!", 1)
+    indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
+    
     
   elif "gnomewayland" in DisplayServer:
     subprocess.call(["sleep", "1"])
+    sendnotification("Recording has stopped!", 1)
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
 
 
@@ -246,8 +247,6 @@ def stoprecording(_):
       AudioProcess.terminate()
     except Exception as e:
       print(e)
-    
-    sendnotification("Recording has stopped!", 1)
     
     if videoswitch.get_active() == True and audioswitch.get_active() == True:
       m = subprocess.call(["ffmpeg", "-i", RecorderFullPathName, "-i", "/tmp/Green-recorder-tmp.mkv", "-c", "copy", "/tmp/Green-Recorder-Final." + formatchooser.get_active_id(), "-y"])
@@ -323,7 +322,7 @@ def record():
       
     else:
       sendnotification("Sorry Jim, looks like you are using something we don't support", 3)
-      window.show()
+      window.present()
 
 def hide_on_delete(widget, event):
     widget.hide()
