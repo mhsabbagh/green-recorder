@@ -103,17 +103,16 @@ def recorderindicator():
     else:
       indicator = appindicator.Indicator.new("Green Recorder", 'green-recorder', appindicator.IndicatorCategory.APPLICATION_STATUS)
     indicator.set_status(appindicator.IndicatorStatus.ACTIVE)
-    indicator.set_menu(indicator_menu())
-    indicator.set_secondary_activate_target(stoprecordingbutton)
-    Gtk.main()
-
-def indicator_menu():
+    
     menu = Gtk.Menu()
     stoprecordingbutton = Gtk.MenuItem(_('Stop Recording'))
     stoprecordingbutton.connect('activate', stoprecording)
     menu.append(stoprecordingbutton)
     menu.show_all()
-    return menu
+    
+    indicator.set_menu(menu)
+    indicator.set_secondary_activate_target(stoprecordingbutton)
+    Gtk.main()
 
 def RecordXorg():
     global DISPLAY, RecorderDisplay
