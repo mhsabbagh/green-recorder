@@ -1,6 +1,6 @@
 # Green Recorder
 
-![Green Recorder](https://i.ibb.co/0pN8YRN/Screenshot-at-2019-02-04-18-30.png)
+![Green Recorder](https://i.ibb.co/b1831W0/Screenshot-from-2019-03-21-12-21-02.png)
 
 ## About
 
