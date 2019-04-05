@@ -88,7 +88,7 @@ def checkStatus():
   os.system("sleep 3")
   if os.path.isfile(RecorderAbsPathName) == False:
     window.present()
-    sendnotification("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue.", 4) 
+    sendnotification(_("There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue."), 4)
 
 def recorderindicator():
     # Create the app indicator widget.
@@ -169,7 +169,7 @@ def RecordXorg():
     
     window.iconify()
     Gdk.flush()
-    sendnotification("Recording has started!", 1)
+    sendnotification(_("Recording has started!"), 1)
     recorderindicator()
     
     t = threading.Thread(target=checkStatus)
@@ -232,13 +232,13 @@ def stoprecording(_):
   if "xorg" in DisplayServer:
     subprocess.call(["sleep", "1"])
     RecorderProcess.terminate()
-    sendnotification("Recording has stopped!", 1)
+    sendnotification(_("Recording has stopped!"), 1)
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
     
     
   elif "gnomewayland" in DisplayServer:
     subprocess.call(["sleep", "1"])
-    sendnotification("Recording has stopped!", 1)
+    sendnotification(_("Recording has stopped!"), 1)
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
 
 
@@ -255,7 +255,7 @@ def stoprecording(_):
       k = subprocess.Popen(["mv", "/tmp/Green-recorder-tmp.mkv", RecorderAbsPathName])
       
   if formatchooser.get_active_id() == "gif":
-    sendnotification("Your GIF image is currently being processed, this may take a while according to your PC's resources.", 5)
+    sendnotification(_("Your GIF image is currently being processed, this may take a while according to your PC's resources."), 5)
     
     subprocess.call(["mv", RecorderAbsPathName, RecorderAbsPathName+".tmp"])
     subprocess.call(["convert", "-layers", "Optimize", RecorderAbsPathName+".tmp", RecorderAbsPathName])
@@ -275,7 +275,7 @@ def record():
     abs_path=RecorderFullPathName.replace("file://",'')
     if os.path.exists(abs_path) and filename.get_text() is not "":
         dialog = Gtk.Dialog(
-            "File already exists!",
+            _("File already exists!"),
             None,
             Gtk.DialogFlags.MODAL,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
@@ -283,7 +283,7 @@ def record():
             )
         dialog.set_transient_for(window)
         dialog.set_default_size(150,100)
-        label = Gtk.Label("Would you like to overwrite this file?")
+        label = Gtk.Label(_("Would you like to overwrite this file?"))
         box = dialog.get_content_area()
         box.add(label)
         dialog.show_all()
@@ -321,7 +321,7 @@ def record():
       RecordGnome()
       
     else:
-      sendnotification("Sorry Jim, looks like you are using something we don't support", 3)
+      sendnotification(_("Sorry Jim, looks like you are using something we don't support"), 3)
       window.present()
 
 def hide_on_delete(widget, event):
@@ -453,7 +453,7 @@ if "wayland" in DisplayServer:
   try:
     s = subprocess.check_output("echo $GDK_BACKEND", shell=True)
     if "x11" not in s:
-      sendnotification("You didn't run the program using the application icon (desktop file). This will cause the program not to work. Run it using the icon from the menus only. (Need to export GDK_BACKEND=x11 first)", 6)
+      sendnotification(_("You didn't run the program using the application icon (desktop file). This will cause the program not to work. Run it using the icon from the menus only. (Need to export GDK_BACKEND=x11 first)"), 6)
   except Exception as e:
     print(e)
 
@@ -473,7 +473,7 @@ class Handler:
         WindowWidth = areaaxis[2]
         WindowHeight = areaaxis[3]
        
-        sendnotification("Your window position has been saved!", 3)
+        sendnotification(_("Your window position has been saved!"), 3)
         
     def selectarea(self, GtkButton):
         areachooser.set_title(_("Area Chooser"))
@@ -498,7 +498,7 @@ class Handler:
         WindowHeight = areaaxis[3] - 80
         
         areachooser.hide()
-        sendnotification("Your area position has been saved!", 3)
+        sendnotification(_("Your area position has been saved!"), 3)
 
     def frameschanged(self, GtkSpinButton):
         config.set('Options', 'frames', int(float(frames.get_value())))

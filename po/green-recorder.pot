@@ -3,144 +3,156 @@
 # This file is distributed under the same license as the Green Recorder package.
 # M.Hanny Sabbagh <mhsabbagh@outlook.com>, 2017
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-08 10:53+0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2019-04-05 19:35+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
 
-#: green-recorder:338 green-recorder:358
+
+#: ./green-recorder:91
+msgid "There seems to be a problem in recording. Try running 'green-recorder' from the command line to see the issue."
+msgstr ""
+
+#: ./green-recorder:106
+msgid "Stop Recording"
+msgstr ""
+
+#: ./green-recorder:172
+msgid "Recording has started!"
+msgstr ""
+
+#: ./green-recorder:235 ./green-recorder:241
+msgid "Recording has stopped!"
+msgstr ""
+
+#: ./green-recorder:258
+msgid "Your GIF image is currently being processed, this may take a while according to your PC's resources."
+msgstr ""
+
+#: ./green-recorder:278
+msgid "File already exists!"
+msgstr ""
+
+#: ./green-recorder:286
+msgid "Would you like to overwrite this file?"
+msgstr ""
+
+#: ./green-recorder:324
+msgid "Sorry Jim, looks like you are using something we don't support"
+msgstr ""
+
+#: ./green-recorder:374
+msgid "About"
+msgstr ""
+
+#: ./green-recorder:379 ./green-recorder:397
 msgid "Green Recorder"
 msgstr ""
 
-#: green-recorder:339
+#: ./green-recorder:380
 msgid "AreaChooser"
 msgstr ""
 
-#: green-recorder:340
-msgid "Green Recorder Preferences"
+#: ./green-recorder:383
+msgid "File Name.."
 msgstr ""
 
-#: green-recorder:342 green-recorder:345
-msgid "File Name (Will be overwritten).."
-msgstr ""
-
-#: green-recorder:343 green-recorder:344
+#: ./green-recorder:384
 msgid "Enter your command here.."
 msgstr ""
 
-#: green-recorder:346
+#: ./green-recorder:385
 msgid "MKV (Matroska multimedia container format)"
 msgstr ""
 
-#: green-recorder:347
+#: ./green-recorder:386
 msgid "AVI (Audio Video Interleaved)"
 msgstr ""
 
-#: green-recorder:348
+#: ./green-recorder:387
 msgid "MP4 (MPEG-4 Part 14)"
 msgstr ""
 
-#: green-recorder:349
+#: ./green-recorder:388
 msgid "WMV (Windows Media Video)"
 msgstr ""
 
-#: green-recorder:350
+#: ./green-recorder:389
 msgid "GIF (Graphics Interchange Format)"
 msgstr ""
 
-#: green-recorder:351
+#: ./green-recorder:390
 msgid "NUT (NUT Recording Format)"
 msgstr ""
 
-#: green-recorder:353 green-recorder:380
+#: ./green-recorder:392
 msgid "Record Video"
 msgstr ""
 
-#: green-recorder:354 green-recorder:381
+#: ./green-recorder:393
 msgid "Record Audio"
 msgstr ""
 
-#: green-recorder:355
+#: ./green-recorder:394
 msgid "Show Mouse"
 msgstr ""
 
-#: green-recorder:356 green-recorder:383
+#: ./green-recorder:395
 msgid "Follow Mouse"
 msgstr ""
 
-#: green-recorder:363
+#: ./green-recorder:402
 msgid "A simple screen recorder for Linux desktop. Supports Wayland & Xorg."
 msgstr ""
 
-#: green-recorder:369
+#: ./green-recorder:407
 msgid "Select a Window"
 msgstr ""
 
-#: green-recorder:370
+#: ./green-recorder:408
 msgid "Select an Area"
 msgstr ""
 
-#: green-recorder:371
+#: ./green-recorder:409
 msgid "Frames:"
 msgstr ""
 
-#: green-recorder:372
+#: ./green-recorder:410
 msgid "Delay:"
 msgstr ""
 
-#: green-recorder:373
+#: ./green-recorder:411
 msgid "Run Command After Recording:"
 msgstr ""
 
-#: green-recorder:374
-msgid "Default frames:"
-msgstr ""
-
-#: green-recorder:375
-msgid "Default delay:"
-msgstr ""
-
-#: green-recorder:376
-msgid "Default folder:"
-msgstr ""
-
-#: green-recorder:377
-msgid "Default pipeline:"
-msgstr ""
-
-#: green-recorder:378
-msgid "Default command:"
-msgstr ""
-
-#: green-recorder:379
+#: ./green-recorder:412
 msgid "Audio Input Source:"
 msgstr ""
 
-#: green-recorder:382
-msgid "Record Mouse"
-msgstr ""
-
-#: green-recorder:384
-msgid "Default filename:"
-msgstr ""
-
-#: green-recorder:385
-msgid "If you want, you can:"
-msgstr ""
-
-#: green-recorder:415
+#: ./green-recorder:428
 msgid "Default PulseAudio Input Source"
 msgstr ""
 
-#: green-recorder:472
+#: ./green-recorder:456
+msgid "You didn't run the program using the application icon (desktop file). This will cause the program not to work. Run it using the icon from the menus only. (Need to export GDK_BACKEND=x11 first)"
+msgstr ""
+
+#: ./green-recorder:476
+msgid "Your window position has been saved!"
+msgstr ""
+
+#: ./green-recorder:479
 msgid "Area Chooser"
 msgstr ""
+
+#: ./green-recorder:501
+msgid "Your area position has been saved!"
+msgstr ""
+
