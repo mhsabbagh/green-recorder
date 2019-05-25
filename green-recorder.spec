@@ -4,7 +4,7 @@
 Name: green-recorder
 Summary: A simple yet functional desktop recorder for Linux systems. Supports both Xorg server and Wayland (GNOME).
 URL: https://github.com/foss-project/green-recorder/
-Version: 3.2.2
+Version: 3.2.3
 Release: 1%{?dist}
 Source: https://github.com/%{owner}/%{name}/archive/%{version}/%{name}-%{version}.tar.gz
 License: GPLv3
@@ -43,6 +43,10 @@ python setup.py install -O1 --root=$RPM_BUILD_ROOT
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sun May 26 2019 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.2.3
+- Removed notifications being sent on recording/stopping.
+- Fixed wrong version number.
+
 * Sun Feb 17 2019 M.Hanny Sabbagh <mhsabbagh@outlook.com> 3.2.2
 - Various bug fixes.
 

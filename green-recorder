@@ -169,7 +169,6 @@ def RecordXorg():
     
     window.iconify()
     Gdk.flush()
-    sendnotification(_("Recording has started!"), 1)
     recorderindicator()
     
     t = threading.Thread(target=checkStatus)
@@ -232,13 +231,11 @@ def stoprecording(_):
   if "xorg" in DisplayServer:
     subprocess.call(["sleep", "1"])
     RecorderProcess.terminate()
-    sendnotification(_("Recording has stopped!"), 1)
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
     
     
   elif "gnomewayland" in DisplayServer:
     subprocess.call(["sleep", "1"])
-    sendnotification(_("Recording has stopped!"), 1)
     indicator.set_status(appindicator.IndicatorStatus.PASSIVE)
 
 
@@ -395,7 +392,7 @@ mouseswitch.set_label(_("Show Mouse"))
 followmouseswitch.set_label(_("Follow Mouse"))
 aboutdialog.set_transient_for(window)
 aboutdialog.set_program_name(_("Green Recorder"))
-aboutdialog.set_version("3.2.2")
+aboutdialog.set_version("3.2.3")
 aboutdialog.set_copyright("© 2019 M.Hanny Sabbagh")
 aboutdialog.set_wrap_license(True)
 aboutdialog.set_license("Green Recorder is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nGreen Recorder is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nSee the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with Green Recorder. If not, see <http://www.gnu.org/licenses/>.")
