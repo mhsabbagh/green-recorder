@@ -183,7 +183,7 @@ def RecordGnome():
     if formatchooser.get_active_id() == "webm":
       RecorderPipeline = "vp8enc min_quantizer=10 max_quantizer=50 cq_level=13 cpu-used=5 deadline=1000000 threads=%T ! queue ! webmmux"
 
-      
+    global AudioProcess
     if audioswitch.get_active() == True:
       AudioRecording.append("ffmpeg")
       AudioRecording.append("-f")
@@ -193,9 +193,10 @@ def RecordGnome():
       AudioRecording.append("/tmp/Green-recorder-tmp.mkv")
       AudioRecording.append("-y")
       
-      global AudioProcess
       AudioProcess = subprocess.Popen(AudioRecording)
-      
+    else:
+      AudioProcess = None
+ 
     if videoswitch.get_active() == True:
       try:
         areaaxis
@@ -241,7 +242,8 @@ def stoprecording(_):
 
     try:
       GNOMEScreencast.StopScreencast()
-      AudioProcess.terminate()
+      if AudioProcess:
+        AudioProcess.terminate()
     except Exception as e:
       print(e)
     
