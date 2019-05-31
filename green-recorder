@@ -262,9 +262,6 @@ def stoprecording(_):
   CommandToRun = command.get_text()
   subprocess.Popen([CommandToRun], shell=True)
  
-def checkbool(s):
-  return s.lower() in ("True", "true", "1")
-
 def record():
     global RecorderFullPathName # grab the path
     RecorderFullPathName = urllib.unquote(folderchooser.get_uri() + '/' + filename.get_text() + '.' + formatchooser.get_active_id())
@@ -412,10 +409,10 @@ frames.set_value(int(config.get('Options', 'frames')))
 delay.set_value(int(config.get('Options', 'delay')))
 filename.set_text(config.get('Options', 'filename'))
 folderchooser.set_uri(config.get('Options', 'folder'))
-videoswitch.set_active(checkbool(config.get('Options', 'videocheck')))
-audioswitch.set_active(checkbool(config.get('Options', 'videocheck')))
-mouseswitch.set_active(checkbool(config.get('Options', 'videocheck')))
-followmouseswitch.set_active(checkbool(config.get('Options', 'followmousecheck')))
+videoswitch.set_active(config.getboolean('Options', 'videocheck'))
+audioswitch.set_active(config.getboolean('Options', 'videocheck'))
+mouseswitch.set_active(config.getboolean('Options', 'videocheck'))
+followmouseswitch.set_active(config.getboolean('Options', 'followmousecheck'))
 command.set_text(config.get('Options', 'command'))
 
 stopbutton.set_sensitive(False)
@@ -498,13 +495,13 @@ class Handler:
         sendnotification(_("Your area position has been saved!"), 3)
 
     def frameschanged(self, GtkSpinButton):
-        config.set('Options', 'frames', int(float(frames.get_value())))
+        config.set('Options', 'frames', str(int(float(frames.get_value()))))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
 
     def delaychanged(self, GtkSpinButton):
-        config.set('Options', 'delay', int(float(delay.get_value())))
+        config.set('Options', 'delay', str(int(float(delay.get_value()))))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
@@ -528,25 +525,25 @@ class Handler:
           config.write(newconfFile)
           
     def videoswitchchanged(self, GtkSwitch):
-        config.set('Options', 'videocheck', videoswitch.get_active())
+        config.set('Options', 'videocheck', str(videoswitch.get_active()))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
           
     def audioswitchchanged(self, GtkSwitch):
-        config.set('Options', 'audiocheck', audioswitch.get_active())
+        config.set('Options', 'audiocheck', str(audioswitch.get_active()))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
           
     def mouseswitchchanged(self, GtkSwitch):
-        config.set('Options', 'mousecheck', mouseswitch.get_active())
+        config.set('Options', 'mousecheck', str(mouseswitch.get_active()))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
           
     def followmouseswitchchanged(self, GtkSwitch):
-        config.set('Options', 'followmousecheck', followmouseswitch.get_active())
+        config.set('Options', 'followmousecheck', str(followmouseswitch.get_active()))
         global confFile
         with open(confFile, 'w+') as newconfFile:
           config.write(newconfFile)
