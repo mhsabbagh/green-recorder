@@ -36,24 +36,6 @@ Make sure you have enabled the multiverse and universe repositories before tryin
     sudo apt update
     sudo apt install green-recorder
 
-### Debian
-
-You can grab the Debian packages directly from the PPA itself and install it on any Debian distribution. You mainly need the "green-recorder" package and "python-pydbus". Other dependancies (like ffmpeg) are probably in Debian repositories: http://ppa.launchpad.net/fossproject/ppa/ubuntu/pool/main/
-
-### Fedora 28/Rawhide
-    
-Fedora 28:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_28/home:mhsabbagh.repo
-    sudo dnf install green-recorder
-
-Fedora 29:
-
-    sudo dnf config-manager --add-repo http://download.opensuse.org/repositories/home:mhsabbagh/Fedora_29/home:mhsabbagh.repo
-    sudo dnf install green-recorder
-    
-Fedora Rawhide package is WIP.
-     
 ### Arch Linux
 
 You can install Green recorder using your [AUR helper](https://wiki.archlinux.org/index.php/AUR_helpers):
