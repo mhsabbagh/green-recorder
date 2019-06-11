@@ -20,7 +20,7 @@ gi.require_version('Gtk','3.0')
 
 from gi.repository import Gtk, Gdk, GLib, AppIndicator3 as appindicator
 from pydbus import SessionBus
-import subprocess, signal, threading, datetime, urllib, gettext, locale, os, ConfigParser
+import subprocess, signal, threading, datetime, urllib, gettext, locale, os, ConfigParser, sys
 
 # Configuration
 confDir =  os.path.join(GLib.get_user_config_dir(), 'green-recorder/')
@@ -331,10 +331,18 @@ def showabout(self):
     
 # Import the glade file and its widgets.
 builder = Gtk.Builder()
-try:
-  builder.add_from_file("/usr/share/green-recorder/ui.glade")
-except:
-  builder.add_from_file("/usr/local/share/green-recorder/ui.glade")
+possible_ui_file_locations = [
+    "/usr/share/green-recorder/ui.glade",
+    "/usr/local/share/green-recorder/ui.glade",
+    os.path.join(os.path.dirname(__file__), "ui", "ui.glade"),
+]
+for filename in possible_ui_file_locations:
+    if os.path.exists(filename):
+        builder.add_from_file(filename)
+        break
+else:
+    sys.exit("Did not find ui.glade.  Tried\n  %s"
+             % "\n  ".join(possible_ui_file_locations))
 
 # Create pointers.
 window = builder.get_object("window1")
