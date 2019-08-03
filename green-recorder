@@ -381,7 +381,7 @@ aboutmenuitem.connect("activate", showabout)
 
 # Assign the texts to the interface
 window.set_title(_("Green Recorder"))
-areachooser.set_name(_('AreaChooser'))
+areachooser.set_name("AreaChooser")
 
 window.connect("delete-event", Gtk.main_quit)
 filename.set_placeholder_text(_("File Name.."))
@@ -480,7 +480,7 @@ class Handler:
         sendnotification(_("Your window position has been saved!"), 3)
         
     def selectarea(self, GtkButton):
-        areachooser.set_title(_("Area Chooser"))
+        areachooser.set_title("Area Chooser")
         areachooser.show()
         
     def stoprecordingclicked(self, GtkButton):
