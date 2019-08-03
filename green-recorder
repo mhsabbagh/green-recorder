@@ -406,7 +406,7 @@ aboutdialog.set_license("Green Recorder is free software: you can redistribute i
 aboutdialog.set_comments(_("A simple screen recorder for Linux desktop. Supports Wayland & Xorg."))
 aboutdialog.set_authors(['M.Hanny Sabbagh <mhsabbagh@outlook.com>','Alessandro Toia <gort818@gmail.com>','Patreon Supporters: Ahmad Gharib, Medium,\nWilliam Grunow, Alex Benishek.'])
 aboutdialog.set_artists(['Mustapha Assabar'])
-aboutdialog.set_website("https://foss-project.com")
+aboutdialog.set_website("https://github.com/foss-project/green-recorder/")
 aboutdialog.set_logo_icon_name("green-recorder")
 windowgrabbutton.set_label(_("Select a Window"))
 areagrabbutton.set_label(_("Select an Area"))
