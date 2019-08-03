@@ -1,3 +1,5 @@
+# This project is archived, it's no longer under development. As the original developer, the work of maintaining and updating this program takes too much of my time, which I was giving for free, and I am no longer interested in working with things like ffmpeg/wayland/GNOME's screencaster or solving the issues related to them or why they don't work. If you would like to continue development, please feel free to fork the project according to the GPL license.
+
 # Green Recorder
 
 ![Green Recorder](https://i.ibb.co/b1831W0/Screenshot-from-2019-03-21-12-21-02.png)
